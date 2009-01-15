@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.36" Name="CodeOMatic">
+ <ProjectOptions>
+  <SharedProject>True</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.36\Xml\FxCopReport.xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <Spelling Locale="en-US" />
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+  <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
+  <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
+  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+ </ProjectOptions>
+ <Targets>
+  <Target Name="$(ProjectDir)/CodeOMatic.Validation.CompileTime/bin/Release/CodeOMatic.Validation.CompileTime.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/CodeOMatic.Validation.Core/bin/Release/CodeOMatic.Validation.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/CodeOMatic.Validation/bin/Release/CodeOMatic.Validation.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/CodeOMatic.Web/bin/Release/CodeOMatic.Web.dll" Analyze="True" AnalyzeAllChildren="True" />
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.36">
+  <Namespaces>
+   <Namespace Name="CodeOMatic.Validation">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Validation</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="0" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="CodeOMatic.Validation.CompileTime">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Validation.CompileTime</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="0" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="CodeOMatic.Validation.Core">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Validation.Core</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="0" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="CodeOMatic.Web">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Web</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="0" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/CodeOMatic.Validation.CompileTime/bin/Release/CodeOMatic.Validation.CompileTime.dll">
+    <Modules>
+     <Module Name="codeomatic.validation.compiletime.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Validation.CompileTime.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="0" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/CodeOMatic.Validation.Core/bin/Release/CodeOMatic.Validation.Core.dll">
+    <Modules>
+     <Module Name="codeomatic.validation.core.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Validation.Core.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="0" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="CodeOMatic.Validation.Core">
+        <Types>
+         <Type Name="ValidatorAttribute">
+          <Members>
+           <Member Name="#GetPostSharpRequirements()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Excluded" Created="2009-01-15 19:59:44Z">
+              <Issue Certainty="50">
+               <Item>'ValidatorAttribute.GetPostSharpRequirements()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="2" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/CodeOMatic.Validation/bin/Release/CodeOMatic.Validation.dll">
+    <Modules>
+     <Module Name="codeomatic.validation.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Validation.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="0" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="CodeOMatic.Validation">
+        <Types>
+         <Type Name="DifferentAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'DifferentAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="EqualAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'EqualAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="GreaterAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'GreaterAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="GreaterOrEqualAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'GreaterOrEqualAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="IntervalAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'IntervalAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="LessAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'LessAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="LessOrEqualAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'LessOrEqualAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="NotEmptyAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'NotEmptyAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="NotNullAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'NotNullAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="PatternAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'PatternAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/CodeOMatic.Web/bin/Release/CodeOMatic.Web.dll">
+    <Modules>
+     <Module Name="codeomatic.web.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Web.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="0" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="CodeOMatic.Web">
+        <Types>
+         <Type Name="SessionVariableAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'SessionVariableAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="ViewStateVariableAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'ViewStateVariableAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="1" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Notes>
+   <User Name="antoine.aubry">
+    <Note Id="0" Modified="2009-01-15 20:00:13Z">'Matic' is part of the project name.&#xD;&#xA;</Note>
+    <Note Id="1" Modified="2009-01-15 20:02:28Z">Adding the AttributeUsage attribute would violate the DRY principle.</Note>
+    <Note Id="2" Modified="2009-01-15 20:02:57Z">The name of this method comes from an interface that is being implemented here.</Note>
+   </User>
+  </Notes>
+  <Rules>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
+    <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018">
+    <Resolution Name="Inherited">Even though attribute {0} inherits AttributeUsage from its base type, you should consider explicitly specifying AttributeUsage on the type to improve code readability and documentation.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+    <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>
