@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CodeOMatic.Validation.ComparisonValidatorAttribute" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ComparisonValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.CustomValidatorAttribute" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAAACAACAAAAAgAAQAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>CustomValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CodeOMatic.Validation.DifferentAttribute" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Different.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.EqualAttribute" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Equal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.GreaterAttribute" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GreaterAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.GreaterOrEqualAttribute" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GreaterOrEqualThan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.IntervalAttribute" Collapsed="true">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCEIAAgBCQAAIAEAAAAAAAAAAAAAAAAAACAAAAAgA=</HashCode>
+      <FileName>IntervalAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.LessAttribute" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LessAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.LessOrEqualAttribute" Collapsed="true">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LessOrEqualAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.NotEmptyAttribute" Collapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEIAAAACCAAAAAAAAAAAAAAAAAAIEAACABQAEAAQ=</HashCode>
+      <FileName>NotEmptyAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.NotNullAttribute" Collapsed="true">
+    <Position X="2.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NotNullAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.ParameterValidatorAttribute" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAAACAAAAAAACAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ParameterValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CodeOMatic.Validation.PatternAttribute" Collapsed="true">
+    <Position X="7.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAACAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>PatternAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.SpecificExceptionMethodValidatorAttribute" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAIAAAAAAAAAAEAAAAAAAAAAAAEAAAABCMAAAACA=</HashCode>
+      <FileName>SpecificExceptionMethodValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.SpecificExceptionParameterValidatorAttribute" Collapsed="true">
+    <Position X="3.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAIAAAAAAAAAAEAAAAAAAAAAAAEAAAABCMAAAACA=</HashCode>
+      <FileName>SpecificExceptionParameterValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CodeOMatic.Validation.TwoParametersValidatorAttribute" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAACAACAAAAAAAQAEAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>TwoParametersValidatorAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="CodeOMatic.Validation.BoundaryMode" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BoundaryMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

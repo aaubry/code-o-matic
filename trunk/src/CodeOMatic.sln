@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOMatic.Validation", "CodeOMatic.Validation\CodeOMatic.Validation.csproj", "{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOMatic.Validation.CompileTime", "CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj", "{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOMatic.Web", "CodeOMatic.Web\CodeOMatic.Web.csproj", "{B93AC8C6-DE54-4152-8D25-458F618540B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{A9F6014A-8ED8-4963-B7E7-C05039BD12B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{243F8B1E-6A56-4234-A2EC-2A1E2EB17755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOMatic.Validation.UnitTests", "..\test\CodeOMatic.Validation.UnitTests\CodeOMatic.Validation.UnitTests.csproj", "{0DDE57CA-C19C-4132-A949-71F149BD56C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8} = {419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{3217F64C-09E3-4C20-933F-92540ECFDEC1}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CodeOMatic.Validation.Installer", "CodeOMatic.Validation.Installer\CodeOMatic.Validation.Installer.vdproj", "{E36C6BF8-44A3-414D-A178-416EB1A63ED2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeOMatic.Validation.Core", "CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj", "{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{BA80F33C-C9B0-4478-9D5D-E31D483B0FA1}"
+	ProjectSection(SolutionItems) = preProject
+		compiling.txt = compiling.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93AC8C6-DE54-4152-8D25-458F618540B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93AC8C6-DE54-4152-8D25-458F618540B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93AC8C6-DE54-4152-8D25-458F618540B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93AC8C6-DE54-4152-8D25-458F618540B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DDE57CA-C19C-4132-A949-71F149BD56C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DDE57CA-C19C-4132-A949-71F149BD56C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DDE57CA-C19C-4132-A949-71F149BD56C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DDE57CA-C19C-4132-A949-71F149BD56C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36C6BF8-44A3-414D-A178-416EB1A63ED2}.Debug|Any CPU.ActiveCfg = Debug
+		{E36C6BF8-44A3-414D-A178-416EB1A63ED2}.Release|Any CPU.ActiveCfg = Release
+		{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CA76C77-7433-4EDA-9F46-41A62C77BA6A} = {A9F6014A-8ED8-4963-B7E7-C05039BD12B1}
+		{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8} = {A9F6014A-8ED8-4963-B7E7-C05039BD12B1}
+		{B93AC8C6-DE54-4152-8D25-458F618540B6} = {A9F6014A-8ED8-4963-B7E7-C05039BD12B1}
+		{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C} = {A9F6014A-8ED8-4963-B7E7-C05039BD12B1}
+		{0DDE57CA-C19C-4132-A949-71F149BD56C4} = {243F8B1E-6A56-4234-A2EC-2A1E2EB17755}
+		{E36C6BF8-44A3-414D-A178-416EB1A63ED2} = {3217F64C-09E3-4C20-933F-92540ECFDEC1}
+	EndGlobalSection
+EndGlobal
