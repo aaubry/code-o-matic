@@ -8,6 +8,9 @@ using CodeOMatic.Validation.Core;
 
 namespace CodeOMatic.Validation.CompileTime
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[CLSCompliant(false)]
 	public class ParameterProcessorAdvice : AttributeBasedAdvice<IParameterValidator>
 	{

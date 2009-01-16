@@ -6,6 +6,9 @@ using CodeOMatic.Validation.Core;
 
 namespace CodeOMatic.Validation.CompileTime
 {
+	/// <summary>
+	/// Generates the code for invoking a <see cref="MethodValidatorAttribute"/>.
+	/// </summary>
 	[CLSCompliant(false)]
 	public class MethodProcessorAdvice : AttributeBasedAdvice<MethodValidatorAttribute>
 	{

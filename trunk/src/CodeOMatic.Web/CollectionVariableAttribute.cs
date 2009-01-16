@@ -3,9 +3,11 @@ using System.Globalization;
 using System.Reflection;
 using System.Web;
 using System.Web.SessionState;
+using PostSharp.CodeModel;
 using PostSharp.Extensibility;
 using PostSharp.Laos;
 using System.Diagnostics;
+using PostSharp.CodeModel.ReflectionWrapper;
 
 namespace CodeOMatic.Web
 {
@@ -54,53 +56,31 @@ namespace CodeOMatic.Web
 		///
 		public override bool CompileTimeValidate(MethodBase method)
 		{
-			bool foundProperty = false;
-			foreach (var property in method.DeclaringType.UnderlyingSystemType.GetProperties(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+			ParameterInfo[] parameters = method.GetParameters();
+
+			isGetter = parameters.Length == 0;
+			if (!isGetter)
 			{
-				if (method.Name == property.GetGetMethod().Name)
+				Type propertyType = parameters[0].ParameterType;
+				if (defaultValue != null && defaultValue.GetType() != propertyType)
 				{
-					isGetter = true;
-					foundProperty = true;
+					MessageSource.MessageSink.Write(new Message(
+						SeverityType.Error,
+						"CollectionVariableAttribute_DefaultValueHasTheWrongType",
+						"The type of the default value does not match the type of the property.",
+						GetType().FullName
+					));
 				}
-				else if (method.Name == property.GetSetMethod().Name)
-				{
-					isGetter = false;
-					foundProperty = true;
-				}
 
-				if (foundProperty)
-				{
-					if (defaultValue != null && defaultValue.GetType() != property.PropertyType)
-					{
-						MessageSource.MessageSink.Write(new Message(
-							SeverityType.Error,
-							"CollectionVariableAttribute_DefaultValueHasTheWrongType",
-							"The type of the default value does not match the type of the property.",
-							GetType().FullName
-						));
-					}
+				string propertyName = method.Name.Replace("set_", "");
+				key = key ?? string.Format(
+					CultureInfo.InvariantCulture,
+					"{0}.{1}",
+					method.DeclaringType.FullName,
+					propertyName
+				);
 
-					key = key ?? string.Format(
-						CultureInfo.InvariantCulture,
-						"{0}.{1}",
-						property.DeclaringType.FullName,
-						property.Name
-					);
-
-					CompileTimeValidate(property, method, isGetter);
-
-					break;
-				}
-			}
-
-			if (!foundProperty)
-			{
-				MessageSource.MessageSink.Write(new Message(
-					SeverityType.Error,
-					"CollectionVariableAttribute_MethodDoesNotBelongToProperty",
-					string.Format(CultureInfo.InvariantCulture, "The method '{0}' does not belong to a property.", method.Name),
-					GetType().FullName
-				));
+				CompileTimeValidate(method, propertyType, propertyName);
 			}
 
 			return base.CompileTimeValidate(method);
@@ -109,10 +89,10 @@ namespace CodeOMatic.Web
 		/// <summary>
 		/// Validates the usage of the attribute on a specific property.
 		/// </summary>
-		/// <param name="propertyInfo">The property.</param>
-		/// <param name="method">The method.</param>
-		/// <param name="isGetMethod">if set to <c>true</c> [is get method].</param>
-		protected virtual void CompileTimeValidate(PropertyInfo propertyInfo, MethodBase method, bool isGetMethod)
+		/// <param name="setter">The setter method of the property.</param>
+		/// <param name="propertyType">Type of the property.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		protected virtual void CompileTimeValidate(MethodBase setter, Type propertyType, string propertyName)
 		{
 		}
 

@@ -7,6 +7,9 @@ using CodeOMatic.Validation.Core;
 
 namespace CodeOMatic.Validation.CompileTime
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	[CLSCompliant(false)]
 	public class ParameterProcessorTask : Task, IAdviceProvider
 	{
@@ -101,15 +104,6 @@ namespace CodeOMatic.Validation.CompileTime
 						new[] { method.DeclaringType }
 					);
 				}
-			}
-			if (parameterCollectionGenerated)
-			{
-				codeWeaver.AddMethodLevelAdvice(
-					new CleanupParameterCollectionAdvice(),
-					new[] { method },
-					JoinPointKinds.BeforeMethodBody,
-					null
-				);
 			}
 		}
 

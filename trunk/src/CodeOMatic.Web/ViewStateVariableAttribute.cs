@@ -19,43 +19,40 @@ namespace CodeOMatic.Web
 		/// <summary>
 		/// Validates the usage of the attribute on a specific property.
 		/// </summary>
-		/// <param name="propertyInfo">The property.</param>
-		/// <param name="method">The method.</param>
-		/// <param name="isGetMethod">if set to <c>true</c> [is get method].</param>
-		protected override void CompileTimeValidate(PropertyInfo propertyInfo, MethodBase method, bool isGetMethod)
+		/// <param name="setter">The setter method of the property.</param>
+		/// <param name="propertyType">Type of the property.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		protected override void CompileTimeValidate(MethodBase setter, Type propertyType, string propertyName)
 		{
-			if (!typeof(Control).IsAssignableFrom(method.DeclaringType))
+			if (!typeof(Control).IsAssignableFrom(setter.DeclaringType))
 			{
 				MessageSource.MessageSink.Write(new Message(
 					SeverityType.Error,
 					"ViewStateVariableAttribute_PropertyDoesNotBelongToControl",
-					string.Format(CultureInfo.InvariantCulture, "The property '{0}' does not belong to a System.Web.UI.Control.", propertyInfo.Name),
+					string.Format(CultureInfo.InvariantCulture, "The property '{0}' does not belong to a System.Web.UI.Control.", propertyName),
 					GetType().FullName
 				));
 			}
-			if(method.IsStatic)
+			if(setter.IsStatic)
 			{
 				MessageSource.MessageSink.Write(new Message(
 					SeverityType.Error,
 					"ViewStateVariableAttribute_PropertyCannotBeStatic",
-					string.Format(CultureInfo.InvariantCulture, "The property '{0}' must not be static.", propertyInfo.Name),
+					string.Format(CultureInfo.InvariantCulture, "The property '{0}' must not be static.", propertyName),
 					GetType().FullName
 				));
 			}
 
-			fieldName = string.Format(CultureInfo.InvariantCulture, "__~~~~{0}", propertyInfo.Name);
+			fieldName = string.Format(CultureInfo.InvariantCulture, "__~~~~{0}", propertyName);
 
-			if(isGetMethod)
-			{
-				MethodDefDeclaration postsharpMethod = ((IReflectionWrapper<MethodDefDeclaration>)method).WrappedObject;
+			MethodDefDeclaration postsharpMethod = ((IReflectionWrapper<MethodDefDeclaration>)setter).WrappedObject;
 
-				FieldDefDeclaration propertyField = new FieldDefDeclaration();
-				propertyField.Name = fieldName;
-				propertyField.FieldType = postsharpMethod.Module.FindType(propertyInfo.PropertyType, BindingOptions.Default);
-				propertyField.Attributes = FieldAttributes.Private;
+			FieldDefDeclaration propertyField = new FieldDefDeclaration();
+			propertyField.Name = fieldName;
+			propertyField.FieldType = postsharpMethod.Module.FindType(propertyType, BindingOptions.Default);
+			propertyField.Attributes = FieldAttributes.Private;
 
-				postsharpMethod.DeclaringType.Fields.Add(propertyField);
-			}
+			postsharpMethod.DeclaringType.Fields.Add(propertyField);
 		}
 
 		private delegate StateBag GetViewStateDelegate(Control target);
@@ -71,7 +68,6 @@ namespace CodeOMatic.Web
 			typeof(IsViewStateEnabledDelegate),
 			"IsViewStateEnabled"
 		);
-
 
 		private static Delegate CreatePropertyGetterDelegate(Type delegateType, string propertyName)
 		{
