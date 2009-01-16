@@ -9,12 +9,19 @@ using CodeOMatic.Validation.Core;
 
 namespace CodeOMatic.Validation.CompileTime
 {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="TValidatorAttribute">The type of the validator attribute.</typeparam>
 	[CLSCompliant(false)]
 	public abstract class AttributeBasedAdvice<TValidatorAttribute> : IAdvice, IDisposable where TValidatorAttribute : class, IValidator
 	{
 		private readonly CustomAttributeDeclaration attribute;
 		private FieldDefDeclaration field;
 
+		/// <summary>
+		/// Gets the attribute that is being processed.
+		/// </summary>
 		protected CustomAttributeDeclaration Attribute
 		{
 			get
@@ -53,6 +60,9 @@ namespace CodeOMatic.Validation.CompileTime
 
 		private TValidatorAttribute validatorInstance;
 
+		/// <summary>
+		/// Gets the validator that is being processed.
+		/// </summary>
 		protected TValidatorAttribute ValidatorInstance
 		{
 			get
@@ -226,13 +236,19 @@ namespace CodeOMatic.Validation.CompileTime
 		#endregion
 
 		#region IDisposable Members
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
-		// The bulk of the clean-up code is implemented in Dispose(bool)
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources
+		/// </summary>
+		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)

@@ -6,6 +6,9 @@ using CodeOMatic.Validation.Core;
 
 namespace CodeOMatic.Validation.CompileTime
 {
+	/// <summary>
+	/// Generates the code for invoking a collection of parameters to be used by one or more <see cref="MethodValidatorAttribute"/>.
+	/// </summary>
 	[CLSCompliant(false)]
 	public class BuildParameterCollectionAdvice : IAdvice
 	{

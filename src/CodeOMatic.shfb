@@ -1,0 +1,54 @@
+﻿<project schemaVersion="1.6.0.7">
+    <assemblies>
+        <assembly assemblyPath=".\CodeOMatic.Validation.CompileTime\bin\Release\CodeOMatic.Validation.CompileTime.dll" xmlCommentsPath=".\CodeOMatic.Validation.CompileTime\bin\Release\CodeOMatic.Validation.CompileTime.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\CodeOMatic.Validation.Core\bin\Release\CodeOMatic.Validation.Core.dll" xmlCommentsPath="" commentsOnly="False" />
+        <assembly assemblyPath=".\CodeOMatic.Validation\bin\Release\CodeOMatic.Validation.dll" xmlCommentsPath=".\CodeOMatic.Validation\bin\Release\CodeOMatic.Validation.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\CodeOMatic.Web\bin\Release\CodeOMatic.Web.dll" xmlCommentsPath=".\CodeOMatic.Web\bin\Release\CodeOMatic.Web.xml" commentsOnly="False" />
+    </assemblies>
+    <dependencies>
+        <dependencyItem depPath="..\lib\PostSharp.Public.dll" />
+        <dependencyItem depPath="..\lib\PostSharp.Core.dll" />
+        <dependencyItem depPath="..\lib\PostSharp.Laos.dll" />
+    </dependencies>
+    <ProjectSummary />
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>
+    <VisibleItems>Attributes, InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>..\Doc\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <BuildLogFile path="" />
+    <HelpFileFormat>HtmlHelp1x</HelpFileFormat>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <IndentHtml>False</IndentHtml>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>CodeOMatic Library Documentation</HelpTitle>
+    <HtmlHelpName>CodeOMatic</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref />
+    <CopyrightText />
+    <FeedbackEMailAddress />
+    <FeedbackEMailLinkText />
+    <HeaderText>CodeOMatic</HeaderText>
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <PresentationStyle>Prototype</PresentationStyle>
+    <NamingMethod>Guid</NamingMethod>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <ShowFeedbackControl>False</ShowFeedbackControl>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>
