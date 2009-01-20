@@ -112,3 +112,27 @@ public void CreditAccount([Interval(0, 1000, MinMode = BoundaryMode.Exclusive, M
 	// Credit the account.
 }
 }}}
+
+== Two arguments comparisons ==
+
+A series of validators compare two arguments with each other. They allow to specify, for example, that some argument must be less that another argument.
+
+The available validators are the following:
+
+  * Less
+  * LessOrEqual
+  * Greater
+  * GreaterOrEqual
+  * Different
+  * Equal
+
+The following example illustrates the usage of the Less attribute. The other attributes are used in the same way. Notice that the attribute is applied to the method because it is validating more than one parameter.
+
+{{{
+[Less("x1", "x2")]
+[Less("y1", "y2")]
+public void DrawRectangle(int x1, int y1, int x2, int y2)
+{
+	// Draw the line
+}
+}}}
