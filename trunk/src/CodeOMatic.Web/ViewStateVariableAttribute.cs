@@ -92,9 +92,8 @@ namespace CodeOMatic.Web
 		/// Gets the value of the property.
 		/// </summary>
 		/// <param name="target">The object from which the property should be obtained.</param>
-		/// <param name="defaultValue">The default value for the property.</param>
 		/// <returns></returns>
-		protected override object GetValue(object target, object defaultValue)
+		protected override object GetValue(object target)
 		{
 			object value;
 			Control control = (Control)target;
@@ -107,7 +106,7 @@ namespace CodeOMatic.Web
 			{
 				value = GetField(target).GetValue(target);
 			}
-			return value ?? defaultValue;
+			return value ?? GetDefaultValue(target);
 		}
 
 		/// <summary>

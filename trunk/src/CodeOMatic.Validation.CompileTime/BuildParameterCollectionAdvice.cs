@@ -66,7 +66,7 @@ namespace CodeOMatic.Validation.CompileTime
 
 			IMethod add = context.Method.Module.FindMethod(typeof(ParameterDictionary).GetMethod("Add", new[] { typeof(string), typeof(object) }), BindingOptions.Default);
 
-			int parameterIndex = 0;
+			int parameterIndex = context.Method.IsStatic ? 0 : 1;
 			foreach (var parameter in method.Parameters)
 			{
 				writer.EmitInstruction(OpCodeNumber.Dup);

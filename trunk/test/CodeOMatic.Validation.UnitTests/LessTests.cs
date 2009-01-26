@@ -10,37 +10,49 @@ namespace CodeOMatic.Validation.UnitTests
 		[ExpectedException(typeof(ArgumentException))]
 		public void LessShouldFail()
 		{
-			FirstLessThanSecondLessThanThird(3, 1, 2);
+			StaticFirstLessThanSecondLessThanThird(3, 1, 2);
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
 		public void LessShouldFail2()
 		{
-			FirstLessThanSecondLessThanThird(1, 3, 2);
+			StaticFirstLessThanSecondLessThanThird(1, 3, 2);
 		}
 
 		[Test]
 		public void GreaterShouldSucceed()
 		{
-			FirstLessThanSecondLessThanThird(1, 2, 3);
+			StaticFirstLessThanSecondLessThanThird(1, 2, 3);
 		}
 
 		[Test]
 		[ExpectedException(typeof(ArgumentException))]
 		public void EqualShouldFail()
 		{
-			FirstLessThanSecondLessThanThird(1, 1, 2);
+			StaticFirstLessThanSecondLessThanThird(1, 1, 2);
 		}
 
 		[Less("first", "second")]
 		[Less("second", "third")]
-		private static void FirstLessThanSecondLessThanThird(int first, int second, int third)
+		private static void StaticFirstLessThanSecondLessThanThird(int first, int second, int third)
 		{
 			int result;
 			Assert.IsTrue(first < second, "first must always be less that second.");
 			Assert.IsTrue(second < third, "second must always be less that third.");
 			result = first + second - third;
+		}
+
+		[Test]
+		public void InstanceLessShouldSucceed()
+		{
+			InstanceFirstLessThanSecondLessThanThird(1, 2);
+		}
+
+		[Less("first", "second")]
+		private void InstanceFirstLessThanSecondLessThanThird(object first, int second)
+		{
+			Assert.IsTrue((int)first < second, "first must always be less that second.");
 		}
 	}
 }
