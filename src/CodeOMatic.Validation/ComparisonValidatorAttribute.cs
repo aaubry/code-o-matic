@@ -50,7 +50,7 @@ namespace CodeOMatic.Validation
 			{
 				firstParameterIsComparable = true;
 			}
-			else if(typeof(IComparable).IsAssignableFrom(firstParameter.ParameterType.GetSystemType(null, null)))
+			else if(typeof(IComparable).IsAssignableFrom(secondParameter.ParameterType.GetSystemType(null, null)))
 			{
 				firstParameterIsComparable = false;
 			}

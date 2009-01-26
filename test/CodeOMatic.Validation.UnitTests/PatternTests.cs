@@ -42,5 +42,22 @@ namespace CodeOMatic.Validation.UnitTests
         {
             TestEmailPatternHelper(string.Empty);
         }
+
+		private static void TestNegation([Pattern(@"(.).*\1", Negate = true)] string text)
+		{
+		}
+
+		[Test]
+		public void NegationShouldPass()
+		{
+			TestNegation("ABCDEF");
+		}
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NegationShouldFail()
+        {
+			TestNegation("ABCDBEF");
+        }
     }
 }

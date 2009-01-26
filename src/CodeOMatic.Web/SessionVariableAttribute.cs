@@ -29,15 +29,31 @@ namespace CodeOMatic.Web
 			}
 		}
 
+		///
+		public override void OnExecution(PostSharp.Laos.MethodExecutionEventArgs eventArgs)
+		{
+			if (HttpContext.Current == null)
+			{
+				throw new InvalidOperationException("This property should only be accessed in the context of an HTTP request.");
+			}
+
+			HttpSessionState session = HttpContext.Current.Session;
+			if (session == null)
+			{
+				throw new InvalidOperationException("There is no session.");
+			}
+
+			base.OnExecution(eventArgs);
+		}
+
 		/// <summary>
 		/// Gets the value of the property.
 		/// </summary>
 		/// <param name="target">The object from which the property should be obtained.</param>
-		/// <param name="defaultValue">The default value for the property.</param>
 		/// <returns></returns>
-		protected override object GetValue(object target, object defaultValue)
+		protected override object GetValue(object target)
 		{
-			return Session[Key] ?? defaultValue;
+			return Session[Key] ?? GetDefaultValue(target);
 		}
 
 		/// <summary>

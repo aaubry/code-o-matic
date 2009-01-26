@@ -1,6 +1,5 @@
 ﻿using System;
 using PostSharp.Extensibility;
-using System.Reflection;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using PostSharp.CodeModel;
@@ -26,6 +25,27 @@ namespace CodeOMatic.Validation
 				return expression;
 			}
 		}
+
+    	private bool negate;
+
+		/// <summary>
+		/// Gets / sets a value indicating whether this <see cref="PatternAttribute"/> is negated.
+		/// </summary>
+		/// <value><c>true</c> if negated; otherwise, <c>false</c>.</value>
+		/// <remarks>
+		/// If this property is set to <c>true</c>, the validation will fail when the pattern matches.
+		/// </remarks>
+    	public bool Negate
+    	{
+    		get
+    		{
+    			return negate;
+    		}
+			set
+			{
+				negate = value;
+			}
+    	}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PatternAttribute"/> class.
@@ -87,8 +107,7 @@ namespace CodeOMatic.Validation
 			{
 				string realValue = (string)value;
 				Match match = Regex.Match(realValue, expression);
-				bool isValid = ((match.Success && (match.Index == 0)));
-				if (!isValid)
+				if (match.Success == negate)
 				{
 					ValidationFailed("The parameter did not match the defined pattern.", value, parameterName);
 				}
