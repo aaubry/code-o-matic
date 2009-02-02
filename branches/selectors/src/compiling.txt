@@ -1,0 +1,18 @@
+   Compiling
+   =========
+
+Windows instructions
+--------------------
+
+1. Install PostSharp 1.0 with the default options: http://www.postsharp.org/download (requires registration :( )
+
+2. Build the solution.
+
+3. Install setup.exe from the CodeOMatic.Validation.Installer\Debug folder.
+    or
+   Manually copy the following files to c:\program files\PostSharp 1.0 :
+     - CodeOMatic.Validation.psplugin
+     - CodeOMatic.Validation.CompileTime.dll
+     - CodeOMatic.Validation.Core.dll
+
+4. Run the unit tests with MbUnit - http://www.mbunit.com/ (optional).
