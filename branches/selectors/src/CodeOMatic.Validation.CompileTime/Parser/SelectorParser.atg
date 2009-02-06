@@ -1,0 +1,50 @@
+﻿COMPILER Selectors
+
+IGNORECASE
+
+CHARACTERS
+	symbolchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".
+	iterationchar = '*'.
+	memberseparatorchar = '.'.
+	selectorseparatorchar = ','.
+	whitespace = " \t\r\n".
+
+TOKENS
+	symbol = symbolchar { symbolchar }.
+	iteration = iterationchar.
+	memberseparator = memberseparatorchar.
+	selectorseparator = selectorseparatorchar.
+
+IGNORE whitespace
+
+PRODUCTIONS
+
+Selectors =															(. StartParsingSelectors(); .)
+	Selector { selectorseparator Selector }.
+
+Selector =															(. SelectorPart part; .)
+																	(. var parts = new List<SelectorPart>(); .)
+	[
+		Member<out part>											(. parts.Add(part); .)
+	]
+	[
+		Iteration<out part>											(. parts.Add(part); .)
+	]
+	{
+		memberseparator
+		Member<out part>											(. parts.Add(part); .)
+		[
+			Iteration<out part>										(. parts.Add(part); .)
+		]
+	}																(. AddSelector(parts); .)
+	.
+
+Iteration<out SelectorPart part> =
+	iteration														(. part = IterationSelectorPart.Instance; .)
+	.
+
+Member<out SelectorPart part> =
+	symbol															(. part = new MemberSelectorPart(t.val); .)
+	.
+
+END Selectors.

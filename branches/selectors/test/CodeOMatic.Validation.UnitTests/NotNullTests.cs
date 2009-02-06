@@ -112,5 +112,32 @@ namespace CodeOMatic.Validation.UnitTests
 		{
 			StaticHelperProperty = null;
 		}
+
+		private class SelectorsForPropertiesAndFieldsWorkType
+		{
+			public string Name
+			{
+				get;
+				set;
+			}
+
+			public string Email;
+		}
+
+		private void SelectorsForPropertiesAndFieldsWorkHelper(
+			[NotNull(Selectors = ",Name,Email")]
+			SelectorsForPropertiesAndFieldsWorkType value
+		)
+		{
+			Assert.IsNotNull(value);
+			Assert.IsNotNull(value.Name);
+			Assert.IsNotNull(value.Email);
+		}
+
+		[Test]
+		public void SelectorsForPropertiesAndFieldsWork()
+		{
+			SelectorsForPropertiesAndFieldsWorkHelper(new SelectorsForPropertiesAndFieldsWorkType { Name = "aaa", Email = "bbb" });
+		}
 	}
 }

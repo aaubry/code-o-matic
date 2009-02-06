@@ -56,15 +56,16 @@ namespace CodeOMatic.Validation
 		/// custom attribute on a specific parameter.
 		/// </summary>
 		/// <param name="parameter">The parameter on which the attribute is applied.</param>
+		/// <param name="memberType">The type that will be validated by the attribute.</param>
 		/// <param name="messages">A <see cref="IMessageSink"/> where to write error messages.</param>
 		/// <remarks>
 		/// This method should use <paramref name="messages"/> to report any error encountered
 		/// instead of throwing an exception.
 		/// </remarks>
 		[CLSCompliant(false)]
-		public void CompileTimeValidate(ParameterDeclaration parameter, IMessageSink messages)
+		public void CompileTimeValidate(ParameterDeclaration parameter, Type memberType, IMessageSink messages)
 		{
-			MethodBase validator = GetValidationMethod(parameter);
+			MethodBase validator = GetValidationMethod(parameter, memberType);
 			if (validator == null)
 			{
 				messages.Write(new Message(
@@ -82,14 +83,14 @@ namespace CodeOMatic.Validation
 		/// <summary>
 		/// Gets the validation method.
 		/// </summary>
-		/// <param name="parameter">The parameter to be validated.</param>
+		/// <param name="parameter">The parameter on which the attribute is applied.</param>
+		/// <param name="memberType">The type that will be validated by the attribute.</param>
 		/// <returns></returns>
 		[CLSCompliant(false)]
-		public MethodBase GetValidationMethod(ParameterDeclaration parameter)
+		public MethodBase GetValidationMethod(ParameterDeclaration parameter, Type memberType)
 		{
 			if (validationMethod == null)
 			{
-				Type parameterType = parameter.ParameterType.GetSystemType(null, null);
 				Type validatedType = parameter.Parent.DeclaringType.GetSystemType(null, null);
 
 				const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
@@ -98,7 +99,7 @@ namespace CodeOMatic.Validation
 				{
 					if(methodInfo.Name == method && methodInfo.ReturnType == typeof(void))
 					{
-						if(ParameterKindDetector.GetParameterKinds(methodInfo, parameterType, validatedType) != null)
+						if(ParameterKindDetector.GetParameterKinds(methodInfo, memberType, validatedType) != null)
 						{
 							validationMethod = methodInfo;
 							break;
@@ -107,6 +108,45 @@ namespace CodeOMatic.Validation
 				}
 			}
 			return validationMethod;
+		}
+
+		/// <summary>
+		/// Gets a string that specifies on what elements of the parameter the attribute should be aplied.
+		/// </summary>
+		/// <value></value>
+		/// <remarks>
+		/// The selectors have the following syntax:
+		/// <pre>
+		/// Selectors =	Selector { selectorseparator Selector }.
+		/// Selector = [Member] [Iteration] { ',' Member [Iteration] }.
+		/// Iteration = '*'.
+		/// Member = valid_C#_identifier.
+		/// </pre>
+		/// Each selector specifies the path to the members on which the attribute should applied.
+		/// Members are C# identifiers that represent the name of a proerty on the current object.
+		/// </remarks>
+		/// <example>
+		/// 	<code>
+		/// public void SendEmail(
+		/// [NotNull(Selector = ", Name, Email")]			// Checks that:
+		/// Address from,									//  - the parameter itself is not null
+		/// //  - the Name and Email properties are not null
+		/// [NotNull(Selector = ", *, *.Name, *.Email")]	// Checks that:
+		/// IEnumerable&lt;Address&gt; to					//  - the parameter itself is not null
+		/// //  - each element is not null
+		/// //  - the Name and Email properties of each element are not null
+		/// )
+		/// {
+		/// // ...
+		/// }
+		/// </code>
+		/// </example>
+		public string Selectors
+		{
+			get
+			{
+				return null;
+			}
 		}
 
 		/// <summary>
