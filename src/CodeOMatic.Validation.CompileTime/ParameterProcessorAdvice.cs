@@ -11,6 +11,7 @@ using CodeOMatic.Validation.CompileTime.Parser;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using PostSharp.Collections;
 
 namespace CodeOMatic.Validation.CompileTime
 {
@@ -114,6 +115,16 @@ namespace CodeOMatic.Validation.CompileTime
 				// Nothing to do.
 			}
 
+			protected virtual void VisitGenericEnumerable(Type interfaceType)
+			{
+				// Nothing to do.
+			}
+
+			protected virtual void VisitEnumerable()
+			{
+				// Nothing to do.
+			}
+
 			void ISelectorVisitor.Visit(IterationSelectorPart part)
 			{
 				Type genericEnumerable = null;
@@ -133,10 +144,12 @@ namespace CodeOMatic.Validation.CompileTime
 				if(genericEnumerable != null)
 				{
 					currentType = genericEnumerable.GetGenericArguments()[0];
+					VisitGenericEnumerable(genericEnumerable);
 				}
 				else if(enumerable != null)
 				{
 					currentType = typeof(object);
+					VisitEnumerable();
 				}
 				else
 				{
@@ -199,7 +212,7 @@ namespace CodeOMatic.Validation.CompileTime
 		}
 		#endregion
 
-		#region MemberTypeVisitor
+		#region MemberEmitterVisitor
 		private sealed class MemberEmitterVisitor : MemberTypeVisitor
 		{
 			private readonly WeavingContext context;
@@ -220,6 +233,32 @@ namespace CodeOMatic.Validation.CompileTime
 			protected override void Visit(PropertyInfo property)
 			{
 				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, property.GetGetMethod().MetadataToken);
+			}
+
+			protected override void VisitGenericEnumerable(Type interfaceType)
+			{
+				Debugger.Break();
+				var beforeLoop = writer.CurrentInstructionSequence;
+				var loop = writer.MethodBody.CreateInstructionSequence();
+				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loop, NodePosition.After, beforeLoop);
+
+				var loopControl = writer.MethodBody.CreateInstructionSequence();
+				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loopControl, NodePosition.After, loop);
+
+				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, interfaceType.GetMethod("GetEnumerator").MetadataToken);
+				writer.EmitBranchingInstruction(OpCodeNumber.Br, loop);
+
+				writer.AttachInstructionSequence(loop);
+				writer.EmitInstruction(OpCodeNumber.Nop);
+
+				writer.AttachInstructionSequence(loopControl);
+				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, typeof(IEnumerator).GetMethod("MoveNext").MetadataToken);
+				writer.EmitBranchingInstruction(OpCodeNumber.Brtrue, loop);
+			}
+
+			protected override void VisitEnumerable()
+			{
+
 			}
 		}
 		#endregion
