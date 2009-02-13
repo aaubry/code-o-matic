@@ -53,6 +53,7 @@ namespace CodeOMatic.Validation
 		/// <param name="parameterName">Name of the parameter.</param>
 		public override void Validate(object target, object value, string parameterName)
 		{
+			Console.WriteLine("Validating '{0}'", value);
 			if (value == null)
 			{
 				throw new ArgumentNullException("value");

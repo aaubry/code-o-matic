@@ -58,7 +58,7 @@ namespace CodeOMatic.Validation.UnitTests
 			SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectors))));
 
 			List<string> parsedSelectors = new List<string>();
-			foreach(var selector in parser.Parse())
+			foreach (var selector in parser.Parse())
 			{
 				ToStringSelectorVisitor visitor = new ToStringSelectorVisitor();
 				foreach(var part in selector.Parts)

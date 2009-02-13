@@ -90,7 +90,11 @@ internal partial class SelectorParser {
 	
 	void Selectors() {
 		StartParsingSelectors(); 
-		Selector();
+		if (la.kind == 1 || la.kind == 2) {
+			Selector();
+		} else if (la.kind == 0 || la.kind == 4) {
+			AddSelector(new SelectorPartList()); 
+		} else SynErr(6);
 		while (la.kind == 4) {
 			Get();
 			Selector();
@@ -98,26 +102,28 @@ internal partial class SelectorParser {
 	}
 
 	void Selector() {
-		SelectorPart part; 
-		var parts = new List<SelectorPart>(); 
-		if (la.kind == 1) {
-			Member(out part);
-			parts.Add(part); 
-		}
-		if (la.kind == 2) {
-			Iteration(out part);
-			parts.Add(part); 
-		}
+		var parts = new SelectorPartList(); 
+		SelectorSegment(parts);
 		while (la.kind == 3) {
 			Get();
+			SelectorSegment(parts);
+		}
+		AddSelector(parts); 
+	}
+
+	void SelectorSegment(SelectorPartList parts) {
+		SelectorPart part; 
+		if (la.kind == 1) {
 			Member(out part);
 			parts.Add(part); 
 			if (la.kind == 2) {
 				Iteration(out part);
 				parts.Add(part); 
 			}
-		}
-		AddSelector(parts); 
+		} else if (la.kind == 2) {
+			Iteration(out part);
+			parts.Add(part); 
+		} else SynErr(7);
 	}
 
 	void Member(out SelectorPart part) {
@@ -162,6 +168,8 @@ internal class Errors {
 			case 3: s = "memberseparator expected"; break;
 			case 4: s = "selectorseparator expected"; break;
 			case 5: s = "??? expected"; break;
+			case 6: s = "invalid Selectors"; break;
+			case 7: s = "invalid SelectorSegment"; break;
 
 			default: s = "error " + n; break;
 		}
