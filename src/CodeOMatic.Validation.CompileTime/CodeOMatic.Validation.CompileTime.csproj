@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +62,7 @@
     <Compile Include="Parser\IterationSelectorPart.cs" />
     <Compile Include="Parser\MemberSelector.cs" />
     <Compile Include="Parser\MemberSelectorPart.cs" />
+    <Compile Include="Parser\SelectorPartList.cs" />
     <Compile Include="Parser\SelectorParser.cs" />
     <Compile Include="Parser\SelectorParser.Generated.cs">
       <AutoGen>True</AutoGen>
@@ -89,6 +91,9 @@
   <ItemGroup>
     <Content Include="Parser\Coco.exe" />
   </ItemGroup>
+  <PropertyGroup>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

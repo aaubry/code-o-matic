@@ -1,13 +1,15 @@
 ﻿using System;
 using MbUnit.Framework;
 using CodeOMatic.Validation;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace CodeOMatic.Validation.UnitTests
 {
 	[TestFixture]
 	public class NotNullTests
 	{
-		private static void TestNotNullHelper([NotNull] string notNull)
+/*		private static void TestNotNullHelper([NotNull] string notNull)
 		{
 			Assert.IsNotNull(notNull, "It should not be possible to invoke this method passing null.");
 		}
@@ -138,6 +140,60 @@ namespace CodeOMatic.Validation.UnitTests
 		public void SelectorsForPropertiesAndFieldsWork()
 		{
 			SelectorsForPropertiesAndFieldsWorkHelper(new SelectorsForPropertiesAndFieldsWorkType { Name = "aaa", Email = "bbb" });
+		}
+*/
+		private void SelectorsForCollectionsWorkHelper(
+			[NotNull(Selectors = "*.Values*")]
+			IEnumerable<X> value
+		)
+		{
+			Console.WriteLine("INSIDE METHOD");
+		}
+
+		//private static NotNullAttribute notNull;
+
+		//private void SelectorsForCollectionsWorkHelper(
+		//    IEnumerable<string> value
+		//)
+		//{
+		//    foreach (var item in value)
+		//    {
+		//        notNull.Validate(this, item, "value*");
+		//    }
+		//}
+
+		[Test]
+		public void SelectorsForCollectionsWork()
+		{
+			SelectorsForCollectionsWorkHelper(EnumerateSequence<X>(new[] { new X(EnumerateSequence<string>(new[] { "aaa", "bbb" })), new X(EnumerateSequence<string>(new[] { "ccc", "ddd" })) }));
+		}
+
+		private class X
+		{
+			private IEnumerable<string> values;
+
+			public X(IEnumerable<string> values)
+			{
+				this.values = values;
+			}
+
+			public IEnumerable<string> Values
+			{
+				get
+				{
+					Console.WriteLine("Reading the Values property");
+					return values;
+				}
+			}
+		}
+
+		private IEnumerable<T> EnumerateSequence<T>(IEnumerable<T> sequence)
+		{
+			foreach (var item in sequence)
+			{
+				Console.WriteLine(item);
+				yield return item;
+			}
 		}
 	}
 }

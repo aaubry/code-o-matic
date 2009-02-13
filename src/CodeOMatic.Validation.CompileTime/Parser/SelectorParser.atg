@@ -20,23 +20,31 @@ IGNORE whitespace
 PRODUCTIONS
 
 Selectors =															(. StartParsingSelectors(); .)
-	Selector { selectorseparator Selector }.
+	(
+		Selector
+	|
+																	(. AddSelector(new SelectorPartList()); .)
+	)
+	{ selectorseparator Selector }.
 
-Selector =															(. SelectorPart part; .)
-																	(. var parts = new List<SelectorPart>(); .)
-	[
-		Member<out part>											(. parts.Add(part); .)
-	]
-	[
-		Iteration<out part>											(. parts.Add(part); .)
-	]
+Selector =
+																	(. var parts = new SelectorPartList(); .)
+	SelectorSegment<parts>
 	{
 		memberseparator
+		SelectorSegment<parts>
+	}																(. AddSelector(parts); .)
+	.
+	
+SelectorSegment<SelectorPartList parts> =							(. SelectorPart part; .)
+	(
 		Member<out part>											(. parts.Add(part); .)
 		[
 			Iteration<out part>										(. parts.Add(part); .)
 		]
-	}																(. AddSelector(parts); .)
+	|
+		Iteration<out part>											(. parts.Add(part); .)
+	)
 	.
 
 Iteration<out SelectorPart part> =

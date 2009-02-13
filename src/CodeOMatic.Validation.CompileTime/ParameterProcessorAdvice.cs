@@ -56,7 +56,7 @@ namespace CodeOMatic.Validation.CompileTime
 		}
 
 		#region MemberTypeVisitor
-		private class MemberTypeVisitor : ISelectorVisitor
+		private abstract class MemberTypeVisitor : ISelectorVisitor
 		{
 			private Type currentType;
 
@@ -77,7 +77,7 @@ namespace CodeOMatic.Validation.CompileTime
 			void ISelectorVisitor.Visit(MemberSelectorPart part)
 			{
 				var property = currentType.GetProperty(part.MemberName, BindingFlags.Public | BindingFlags.Instance);
-				if(property != null)
+				if (property != null)
 				{
 					currentType = property.PropertyType;
 					Visit(property);
@@ -129,24 +129,25 @@ namespace CodeOMatic.Validation.CompileTime
 			{
 				Type genericEnumerable = null;
 				Type enumerable = null;
-				foreach (var interfaceType in currentType.GetInterfaces())
+
+				foreach (var interfaceType in EnumerateInterfaces(currentType))
 				{
-					if(interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+					if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
 					{
 						genericEnumerable = interfaceType;
 					}
-					else if(interfaceType == typeof(IEnumerable))
+					else if (interfaceType == typeof(IEnumerable))
 					{
 						enumerable = interfaceType;
 					}
 				}
 
-				if(genericEnumerable != null)
+				if (genericEnumerable != null)
 				{
 					currentType = genericEnumerable.GetGenericArguments()[0];
 					VisitGenericEnumerable(genericEnumerable);
 				}
-				else if(enumerable != null)
+				else if (enumerable != null)
 				{
 					currentType = typeof(object);
 					VisitEnumerable();
@@ -154,6 +155,18 @@ namespace CodeOMatic.Validation.CompileTime
 				else
 				{
 					VisitInvalid(part);
+				}
+			}
+
+			private IEnumerable<Type> EnumerateInterfaces(Type currentType)
+			{
+				if (currentType.IsInterface)
+				{
+					yield return currentType;
+				}
+				foreach (var interfaceType in currentType.GetInterfaces())
+				{
+					yield return interfaceType;
 				}
 			}
 			#endregion
@@ -237,28 +250,62 @@ namespace CodeOMatic.Validation.CompileTime
 
 			protected override void VisitGenericEnumerable(Type interfaceType)
 			{
-				Debugger.Break();
-				var beforeLoop = writer.CurrentInstructionSequence;
-				var loop = writer.MethodBody.CreateInstructionSequence();
-				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loop, NodePosition.After, beforeLoop);
-
-				var loopControl = writer.MethodBody.CreateInstructionSequence();
-				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loopControl, NodePosition.After, loop);
-
-				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, interfaceType.GetMethod("GetEnumerator").MetadataToken);
-				writer.EmitBranchingInstruction(OpCodeNumber.Br, loop);
-
-				writer.AttachInstructionSequence(loop);
-				writer.EmitInstruction(OpCodeNumber.Nop);
-
-				writer.AttachInstructionSequence(loopControl);
-				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, typeof(IEnumerator).GetMethod("MoveNext").MetadataToken);
-				writer.EmitBranchingInstruction(OpCodeNumber.Brtrue, loop);
+				ModuleDeclaration module = context.Method.Module;
+				Type genericEnumeratorType = typeof(IEnumerator<>).MakeGenericType(interfaceType.GetGenericArguments());
+				ITypeSignature enumeratorType = module.FindType(genericEnumeratorType, BindingOptions.RequireGenericInstance);
+				IMethod getEnumerator = module.FindMethod(interfaceType.GetMethod("GetEnumerator"), BindingOptions.RequireGenericInstance);
+				IMethod getCurrent = module.FindMethod(genericEnumeratorType.GetProperty("Current").GetGetMethod(), BindingOptions.RequireGenericInstance);
+				EmitEnumeration(enumeratorType, getEnumerator, getCurrent);
 			}
 
 			protected override void VisitEnumerable()
 			{
+				ModuleDeclaration module = context.Method.Module;
+				ITypeSignature enumeratorType = module.FindType(typeof(IEnumerator), BindingOptions.Default);
+				IMethod getEnumerator = module.FindMethod(typeof(IEnumerable).GetMethod("GetEnumerator"), BindingOptions.Default);
+				IMethod getCurrent = module.FindMethod(typeof(IEnumerator).GetProperty("Current").GetGetMethod(), BindingOptions.Default);
+				EmitEnumeration(enumeratorType, getEnumerator, getCurrent);
+			}
 
+			private void EmitEnumeration(ITypeSignature enumeratorType, IMethod getEnumerator, IMethod getCurrent)
+			{
+				ModuleDeclaration module = context.Method.Module;
+				context.Method.MethodBody.InitLocalVariables = true;
+
+				var beforeLoop = writer.CurrentInstructionSequence;
+
+				var loopHeader = writer.MethodBody.CreateInstructionSequence();
+				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loopHeader, NodePosition.After, beforeLoop);
+
+				var loop = writer.MethodBody.CreateInstructionSequence();
+				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loop, NodePosition.After, loopHeader);
+
+				var loopControl = writer.MethodBody.CreateInstructionSequence();
+				beforeLoop.ParentInstructionBlock.AddInstructionSequence(loopControl, NodePosition.After, loop);
+
+				var enumerator = beforeLoop.ParentInstructionBlock.DefineLocalVariable(enumeratorType, NameGenerator.Generate("enum"));
+
+				writer.EmitInstructionMethod(OpCodeNumber.Callvirt, getEnumerator);
+				writer.EmitInstructionLocalVariable(OpCodeNumber.Stloc, enumerator);
+
+				writer.EmitBranchingInstruction(OpCodeNumber.Br, loopControl);
+				writer.DetachInstructionSequence();
+
+				writer.AttachInstructionSequence(loopHeader);
+				writer.EmitInstructionLocalVariable(OpCodeNumber.Ldloc, enumerator);
+				
+				writer.EmitInstructionMethod(OpCodeNumber.Callvirt, getCurrent);
+
+				writer.DetachInstructionSequence();
+
+				writer.AttachInstructionSequence(loopControl);
+				writer.EmitInstructionLocalVariable(OpCodeNumber.Ldloc, enumerator);
+				IMethod moveNext = module.FindMethod(typeof(IEnumerator).GetMethod("MoveNext"), BindingOptions.Default);
+				writer.EmitInstructionMethod(OpCodeNumber.Callvirt, moveNext);
+				writer.EmitBranchingInstruction(OpCodeNumber.Brtrue, loopHeader);
+				writer.DetachInstructionSequence();
+
+				writer.AttachInstructionSequence(loop);
 			}
 		}
 		#endregion
@@ -348,20 +395,22 @@ namespace CodeOMatic.Validation.CompileTime
 				SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectorsText))));
 				parser.errors.errorStream = new StringWriter();
 				IEnumerable<MemberSelector> memberSelectors = parser.Parse();
-				if(parser.errors.count > 0)
+				if (parser.errors.count > 0)
 				{
 					messages.Write(new Message(
 						SeverityType.Error,
 						"ParameterProcessorAdvice_SelectorParsingError",
-						string.Format(CultureInfo.InvariantCulture,
+						string.Format(
+							CultureInfo.InvariantCulture,
 							"Error(s) parsing the selector '{0}':\n{1}",
 							selectorsText,
-							parser.errors.errorStream),
+							parser.errors.errorStream
+						),
 						GetType().FullName
 					));
 				}
 
-				foreach(var selector in memberSelectors)
+				foreach (var selector in memberSelectors)
 				{
 					var visitor = new SelectorValidatorVisitor(parameter.ParameterType.GetSystemType(null, null),
 						delegate(string message)
@@ -377,7 +426,7 @@ namespace CodeOMatic.Validation.CompileTime
 
 					selector.Accept(visitor);
 
-					if(visitor.IsValid)
+					if (visitor.IsValid)
 					{
 						attributeInstance.CompileTimeValidate(parameter, visitor.CurrentType, MessageSource.MessageSink);
 					}
@@ -413,22 +462,26 @@ namespace CodeOMatic.Validation.CompileTime
 
 			foreach (var selector in selectors)
 			{
-				var typeVisitor = new MemberTypeVisitor(parameter.ParameterType.GetSystemType(null, null));
-				selector.Accept(typeVisitor);
+				// Push the value of the parameter that is being validated.
+				writer.EmitInstructionInt32(OpCodeNumber.Ldarg, 0 + (context.Method.IsStatic ? 0 : 1));
 
-				MethodBase validationMethod = ValidatorInstance.GetValidationMethod(parameter, typeVisitor.CurrentType);
+				var visitor = new MemberEmitterVisitor(parameter.ParameterType.GetSystemType(null, null), context, writer);
+				selector.Accept(visitor);
 
-				Type parameterType = parameter.ParameterType.GetSystemType(null, null);
-				Type validatedType = parameter.Parent.DeclaringType.GetSystemType(null, null);
+				var validatedType = context.Method.Module.FindType(visitor.CurrentType, visitor.CurrentType.IsGenericType ? BindingOptions.RequireGenericInstance : BindingOptions.Default);
+				var value = writer.CurrentInstructionSequence.ParentInstructionBlock.DefineLocalVariable(validatedType, NameGenerator.Generate("value"));
+				writer.EmitInstructionLocalVariable(OpCodeNumber.Stloc, value);
+
+				MethodBase validationMethod = ValidatorInstance.GetValidationMethod(parameter, visitor.CurrentType);
 
 				int validationParameterIndex = validationMethod.IsStatic ? 0 : -1;
 
-				ParameterKinds[] parameterKinds = ParameterKindDetector.GetParameterKinds(validationMethod, parameterType, validatedType);
+				ParameterKinds[] parameterKinds = ParameterKindDetector.GetParameterKinds(validationMethod, visitor.CurrentType, parameter.Parent.DeclaringType.GetSystemType(null, null));
 				Debug.Assert(parameterKinds != null);
 
-				foreach(var kind in parameterKinds)
+				foreach (var kind in parameterKinds)
 				{
-					switch(kind)
+					switch (kind)
 					{
 						case ParameterKinds.None:
 							// Do nothing
@@ -445,17 +498,13 @@ namespace CodeOMatic.Validation.CompileTime
 							break;
 
 						case ParameterKinds.ParameterType:
-							// Push the value of the parameter that is being validated.
-							writer.EmitInstructionInt32(OpCodeNumber.Ldarg, context.Method.IsStatic ? parameterIndex : parameterIndex + 1);
-
-							// Emit the code to reach the desired member.
-							var visitor = new MemberEmitterVisitor(parameter.ParameterType.GetSystemType(null, null), context, writer);
-							selector.Accept(visitor);
+							// Recover the value to validate from the local variable.
+							writer.EmitInstructionLocalVariable(OpCodeNumber.Ldloc, value);
 
 							// Box the value if it must be converted from value-type to object.
-							bool validatedParameterIsValueType = parameter.ParameterType.BelongsToClassification(TypeClassifications.ValueType);
+							bool validatedParameterIsValueType = visitor.CurrentType.IsValueType;
 							bool validationParameterIsValueType = validationMethod.GetParameters()[validationParameterIndex].ParameterType.IsValueType;
-							if(validatedParameterIsValueType && !validationParameterIsValueType)
+							if (validatedParameterIsValueType && !validationParameterIsValueType)
 							{
 								writer.EmitInstructionType(OpCodeNumber.Box, parameter.ParameterType);
 							}
@@ -476,7 +525,7 @@ namespace CodeOMatic.Validation.CompileTime
 
 				// We can finally call the method.
 				IMethod validate = context.Method.Module.FindMethod(validationMethod, BindingOptions.Default);
-				if(validationMethod.IsStatic)
+				if (validationMethod.IsStatic)
 				{
 					writer.EmitInstructionMethod(OpCodeNumber.Call, validate);
 				}
