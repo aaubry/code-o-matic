@@ -389,47 +389,45 @@ namespace CodeOMatic.Validation.CompileTime
 		/// </remarks>
 		protected override void CompileTimeValidate(IParameterValidator attributeInstance, IMessageSink messages)
 		{
-			string selectorsText = attributeInstance.Selectors;
-			if (!string.IsNullOrEmpty(selectorsText))
+			string selectorsText = attributeInstance.Selectors ?? string.Empty;
+
+			SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectorsText))));
+			parser.errors.errorStream = new StringWriter();
+			IEnumerable<MemberSelector> memberSelectors = parser.Parse();
+			if (parser.errors.count > 0)
 			{
-				SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectorsText))));
-				parser.errors.errorStream = new StringWriter();
-				IEnumerable<MemberSelector> memberSelectors = parser.Parse();
-				if (parser.errors.count > 0)
-				{
-					messages.Write(new Message(
-						SeverityType.Error,
-						"ParameterProcessorAdvice_SelectorParsingError",
-						string.Format(
-							CultureInfo.InvariantCulture,
-							"Error(s) parsing the selector '{0}':\n{1}",
-							selectorsText,
-							parser.errors.errorStream
-						),
-						GetType().FullName
-					));
-				}
+				messages.Write(new Message(
+					SeverityType.Error,
+					"ParameterProcessorAdvice_SelectorParsingError",
+					string.Format(
+						CultureInfo.InvariantCulture,
+						"Error(s) parsing the selector '{0}':\n{1}",
+						selectorsText,
+						parser.errors.errorStream
+					),
+					GetType().FullName
+				));
+			}
 
-				foreach (var selector in memberSelectors)
-				{
-					var visitor = new SelectorValidatorVisitor(parameter.ParameterType.GetSystemType(null, null),
-						delegate(string message)
-						{
-							messages.Write(new Message(
-								SeverityType.Error,
-								"ParameterProcessorAdvice_ErrorInSelector",
-								string.Format(CultureInfo.InvariantCulture, "Error in selector '{0}': {1}", selectorsText, message),
-								GetType().FullName
-							));
-						}
-					);
-
-					selector.Accept(visitor);
-
-					if (visitor.IsValid)
+			foreach (var selector in memberSelectors)
+			{
+				var visitor = new SelectorValidatorVisitor(parameter.ParameterType.GetSystemType(null, null),
+					delegate(string message)
 					{
-						attributeInstance.CompileTimeValidate(parameter, visitor.CurrentType, MessageSource.MessageSink);
+						messages.Write(new Message(
+							SeverityType.Error,
+							"ParameterProcessorAdvice_ErrorInSelector",
+							string.Format(CultureInfo.InvariantCulture, "Error in selector '{0}': {1}", selectorsText, message),
+							GetType().FullName
+						));
 					}
+				);
+
+				selector.Accept(visitor);
+
+				if (visitor.IsValid)
+				{
+					attributeInstance.CompileTimeValidate(parameter, visitor.CurrentType, MessageSource.MessageSink);
 				}
 			}
 		}

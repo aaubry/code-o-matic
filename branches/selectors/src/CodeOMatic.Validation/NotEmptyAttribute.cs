@@ -19,6 +19,7 @@ namespace CodeOMatic.Validation
 	{
 		private enum ParameterKind
 		{
+			None,
 			String,
 			ICollection,
 			ICollectionOfT
