@@ -9,7 +9,7 @@ namespace CodeOMatic.Validation.UnitTests
 	[TestFixture]
 	public class NotNullTests
 	{
-/*		private static void TestNotNullHelper([NotNull] string notNull)
+		private static void TestNotNullHelper([NotNull] string notNull)
 		{
 			Assert.IsNotNull(notNull, "It should not be possible to invoke this method passing null.");
 		}
@@ -141,7 +141,7 @@ namespace CodeOMatic.Validation.UnitTests
 		{
 			SelectorsForPropertiesAndFieldsWorkHelper(new SelectorsForPropertiesAndFieldsWorkType { Name = "aaa", Email = "bbb" });
 		}
-*/
+
 		private void SelectorsForCollectionsWorkHelper(
 			[NotNull(Selectors = "*.Values*")]
 			IEnumerable<X> value
@@ -149,18 +149,6 @@ namespace CodeOMatic.Validation.UnitTests
 		{
 			Console.WriteLine("INSIDE METHOD");
 		}
-
-		//private static NotNullAttribute notNull;
-
-		//private void SelectorsForCollectionsWorkHelper(
-		//    IEnumerable<string> value
-		//)
-		//{
-		//    foreach (var item in value)
-		//    {
-		//        notNull.Validate(this, item, "value*");
-		//    }
-		//}
 
 		[Test]
 		public void SelectorsForCollectionsWork()
