@@ -19,28 +19,27 @@ namespace CodeOMatic.Validation
 		/// custom attribute on a specific parameter.
 		/// </summary>
 		/// <param name="parameter">The parameter on which the attribute is applied.</param>
+		/// <param name="memberType">The type that will be validated by the attribute.</param>
 		/// <param name="messages">A <see cref="IMessageSink"/> where to write error messages.</param>
 		/// <remarks>
 		/// This method should use <paramref name="messages"/> to report any error encountered
 		/// instead of throwing an exception.
 		/// </remarks>
 		[CLSCompliant(false)]
-		public override void CompileTimeValidate(ParameterDeclaration parameter, IMessageSink messages)
+		public override void CompileTimeValidate(ParameterDeclaration parameter, Type memberType, IMessageSink messages)
 		{
-			base.CompileTimeValidate(parameter, messages);
-
-			Type parameterType = parameter.ParameterType.GetSystemType(null, null);
+			base.CompileTimeValidate(parameter, memberType, messages);
 
 			bool isNullable =
-				!parameterType.IsValueType ||
-				(parameterType.IsGenericType && parameterType.GetGenericTypeDefinition() == typeof(Nullable<>));
+				!memberType.IsValueType ||
+				(memberType.IsGenericType && memberType.GetGenericTypeDefinition() == typeof(Nullable<>));
 
 			if (!isNullable)
 			{
 				messages.Write(new Message(
 					SeverityType.Error,
 					"NotNullAttribute_TypeNotNullable",
-					string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not nullable.", parameterType.Name),
+					string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not nullable.", memberType.Name),
 					GetType().FullName
 				));
 			}
@@ -54,6 +53,7 @@ namespace CodeOMatic.Validation
 		/// <param name="parameterName">Name of the parameter.</param>
 		public override void Validate(object target, object value, string parameterName)
 		{
+			Console.WriteLine("Validating '{0}'", value);
 			if (value == null)
 			{
 				throw new ArgumentNullException("value");

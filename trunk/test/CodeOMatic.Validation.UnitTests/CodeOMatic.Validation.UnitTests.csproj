@@ -12,6 +12,10 @@
     <AssemblyName>CodeOMatic.Validation.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\src\CodeOMatic.snk</AssemblyOriginatorKeyFile>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\PostSharp.Public.dll</HintPath>
     </Reference>
+    <Reference Include="QuickGraph.Algorithms, Version=2.4.2.355, Culture=neutral, PublicKeyToken=975e84d0c8d6464d">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\QuickGraph.Algorithms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -58,8 +66,13 @@
     <Compile Include="NotNullTests.cs" />
     <Compile Include="PatternTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScopeParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj">
+      <Project>{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}</Project>
+      <Name>CodeOMatic.Validation.CompileTime</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj">
       <Project>{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}</Project>
       <Name>CodeOMatic.Validation.Core</Name>

@@ -36,12 +36,15 @@ MD "%RELEASES_PATH%" 2> NUL
 
 SET OUTPUT_FOLDER=%RELEASES_PATH%\%1
 SET OUTPUT_BIN_ARCHIVE=%OUTPUT_FOLDER%\CodeOMatic_bin_%1.zip
+SET OUTPUT_SRC_ARCHIVE=%OUTPUT_FOLDER%\CodeOMatic_src_%1.zip
 SET OUTPUT_ASSEMBLIES=%OUTPUT_FOLDER%\bin
+SET OUTPUT_SRC=%OUTPUT_FOLDER%\src
 
 RD /S /Q "%OUTPUT_FOLDER%" > NUL
 
 MD %OUTPUT_FOLDER%
 MD %OUTPUT_ASSEMBLIES%
+MD %OUTPUT_SRC%
 
 FOR %%I IN (Validation Validation.CompileTime Validation.Core Web) DO (
 	COPY "%SOURCE_PATH%\CodeOMatic.%%I\bin\Release\CodeOMatic.%%I.dll" "%OUTPUT_ASSEMBLIES%
@@ -51,9 +54,25 @@ COPY "%SOURCE_PATH%\CodeOMatic.Validation.Installer\Release\CodeOMatic.Validatio
 
 "%SCRIPT_PATH%\tools\7z.exe" a -tzip "%OUTPUT_BIN_ARCHIVE%" "%OUTPUT_ASSEMBLIES%\*.*"
 
+PUSHD "%OUTPUT_SRC%"
+SET EXCLUSIONS_FILE=exclusions.txt
+
+ECHO. > %EXCLUSIONS_FILE%
+
+FOR %%I IN (_ReSharper \bin \obj \.svn Debug Release .cache .user .suo .resharper) DO (
+	ECHO %%I >> %EXCLUSIONS_FILE%
+)
+
+XCOPY "%SOURCE_PATH%" "%OUTPUT_SRC%" /EXCLUDE:%EXCLUSIONS_FILE% /E /I /Q
+
+DEL %EXCLUSIONS_FILE%
+POPD
+
 IF /I [%2] == [-doc] (
 	COPY "%DOC_PATH%\*.chm" "%OUTPUT_FOLDER%"
 )
+
+"%SCRIPT_PATH%\tools\7z.exe" a -tzip "%OUTPUT_SRC_ARCHIVE%" "%OUTPUT_SRC%\*.*"
 
 POPD
 
