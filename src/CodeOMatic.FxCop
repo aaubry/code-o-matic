@@ -121,6 +121,338 @@
         </Notes>
        </Message>
       </Messages>
+      <Namespaces>
+       <Namespace Name="CodeOMatic.Validation.CompileTime">
+        <Types>
+         <Type Name="ParameterProcessorAdvice">
+          <Members>
+           <Member Name="#CompileTimeValidate(CodeOMatic.Validation.Core.IParameterValidator,PostSharp.Extensibility.IMessageSink)">
+            <Messages>
+             <Message Id="System.IO.StringWriter.#ctor" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'StringWriter.StringWriter()'</Item>
+               <Item>'ParameterProcessorAdvice.CompileTimeValidate(IParameterValidator, IMessageSink)'</Item>
+               <Item>'StringWriter.StringWriter(IFormatProvider)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#parameterIndex">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'ParameterProcessorAdvice.parameterIndex'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Weave(PostSharp.CodeWeaver.WeavingContext,PostSharp.CodeModel.InstructionWriter)">
+            <Messages>
+             <Message Id="System.IO.StringWriter.#ctor" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'StringWriter.StringWriter()'</Item>
+               <Item>'ParameterProcessorAdvice.Weave(WeavingContext, InstructionWriter)'</Item>
+               <Item>'StringWriter.StringWriter(IFormatProvider)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ParameterProcessorAdvice+SelectorInfo">
+          <Members>
+           <Member Name="#.ctor(CodeOMatic.Validation.CompileTime.Parser.MemberSelector,System.Type)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'ParameterProcessorAdvice.SelectorInfo.SelectorInfo(MemberSelector, Type)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#MemberType">
+            <Accessors>
+             <Accessor Name="#get_MemberType()">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+                <Issue>
+                 <Item>'ParameterProcessorAdvice.SelectorInfo.MemberType.get()'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="#Selector">
+            <Accessors>
+             <Accessor Name="#get_Selector()">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+                <Issue>
+                 <Item>'ParameterProcessorAdvice.SelectorInfo.Selector.get()'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="CodeOMatic.Validation.CompileTime.Parser">
+        <Types>
+         <Type Name="Buffer">
+          <Members>
+           <Member Name="#.ctor(System.IO.Stream,System.Boolean)">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Buffer.Buffer(Stream, bool)'</Item>
+               <Item>'Buffer.bufPos'</Item>
+               <Item>'int'</Item>
+               <Item>0</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetString(System.Int32,System.Int32)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Buffer.GetString(int, int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Errors">
+          <Members>
+           <Member Name="#SemErr(System.Int32,System.Int32,System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Errors.SemErr(int, int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SemErr(System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Errors.SemErr(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Warning(System.Int32,System.Int32,System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Errors.Warning(int, int, string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Warning(System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Errors.Warning(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="FatalError">
+          <Messages>
+           <Message TypeName="ExceptionsShouldBePublic" Category="Microsoft.Design" CheckId="CA1064" Created="2009-03-31 08:19:57Z">
+            <Issue>
+             <Item>'FatalError'</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2009-03-31 08:19:57Z">
+            <Issue Name="MissingConstructor">
+             <Item>'FatalError'</Item>
+             <Item>protected FatalError(SerializationInfo, StreamingContext)</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Created="2009-03-31 08:19:57Z">
+            <Issue Certainty="95" Level="Error">
+             <Item>'FatalError'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="MemberSelector">
+          <Members>
+           <Member Name="#Parts">
+            <Accessors>
+             <Accessor Name="#get_Parts()">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+                <Issue>
+                 <Item>'MemberSelector.Parts.get()'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SelectorParser">
+          <Members>
+           <Member Name="#ExpectWeak(System.Int32,System.Int32)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorParser.ExpectWeak(int, int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SemErr(System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorParser.SemErr(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#set">
+            <Messages>
+             <Message Id="Member" TypeName="PreferJaggedArraysOverMultidimensional" Category="Microsoft.Performance" CheckId="CA1814" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorParser.set'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#StartOf(System.Int32)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorParser.StartOf(int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WeakSeparator(System.Int32,System.Int32,System.Int32)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorParser.WeakSeparator(int, int, int)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SelectorScanner">
+          <Members>
+           <Member Name="#.cctor()">
+            <Messages>
+             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorScanner'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#.ctor(System.String)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorScanner.SelectorScanner(string)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#CheckLiteral()">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorScanner.CheckLiteral()'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.ToLower" TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806" Created="2009-03-31 08:19:57Z">
+              <Issue Name="StringCreation">
+               <Item>'SelectorScanner.CheckLiteral()'</Item>
+               <Item>'string.ToLower()'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'string.ToLower()'</Item>
+               <Item>'SelectorScanner.CheckLiteral()'</Item>
+               <Item>'string.ToLower(CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Init()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'string.Format(string, object, object)'</Item>
+               <Item>'SelectorScanner.Init()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#NextCh()">
+            <Messages>
+             <Message Id="System.Char.ToLower(System.Char)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'char.ToLower(char)'</Item>
+               <Item>'SelectorScanner.NextCh()'</Item>
+               <Item>'char.ToLower(char, CultureInfo)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Peek()">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorScanner.Peek()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ResetPeek()">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'SelectorScanner.ResetPeek()'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Token">
+          <Members>
+           <Member Name="#pos">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2009-03-31 08:19:57Z">
+              <Issue>
+               <Item>'Token.pos'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
      </Module>
     </Modules>
    </Target>
@@ -351,6 +683,41 @@
       <Namespaces>
        <Namespace Name="CodeOMatic.Web">
         <Types>
+         <Type Name="AppSettingsVariableAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Created="2009-03-31 08:19:57Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'AppSettingsVariableAttribute'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="CollectionVariableAttribute">
+          <Members>
+           <Member Name="#DefaultValue">
+            <Messages>
+             <Message TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721" Created="2009-03-31 08:19:57Z" FixCategory="NonBreaking">
+              <Issue Name="SameType">
+               <Item>'CollectionVariableAttribute.DefaultValue'</Item>
+               <Item>'CollectionVariableAttribute.GetDefaultValue(object)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#RuntimeInitialize(System.Reflection.MethodBase)">
+            <Messages>
+             <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Created="2009-03-31 08:19:57Z">
+              <Issue Name="Parameter">
+               <Item>'method'</Item>
+               <Item>'MethodInfo'</Item>
+               <Item>'CollectionVariableAttribute.RuntimeInitialize(MethodBase)'</Item>
+               <Item>castclass</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
          <Type Name="SessionVariableAttribute">
           <Messages>
            <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
@@ -394,12 +761,51 @@
    </User>
   </Notes>
   <Rules>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
+    <Resolution Name="Parameter">{0}, a parameter, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotIgnoreMethodResults" Category="Microsoft.Usage" CheckId="CA1806">
+    <Resolution Name="StringCreation">{0} calls {1} but does not use the new string instance that the method returns. Pass the instance as an argument to another method, assign the instance to a variable, or remove the call if it is unnecessary.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805">
+    <Resolution Name="Default">{0} initializes field {1} of type {2} to {3}. Remove this initialization because it will be done automatically by the runtime.</Resolution>
+   </Rule>
+   <Rule TypeName="ExceptionsShouldBePublic" Category="Microsoft.Design" CheckId="CA1064">
+    <Resolution Name="Default">Make exception class {0} public.</Resolution>
+   </Rule>
    <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
     <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
     <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
    </Rule>
+   <Rule TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032">
+    <Resolution Name="MissingConstructor">Add the following constructor to {0}: {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810">
+    <Resolution Name="Default">Initialize all static fields in {0} when those fields are declared and remove the explicit static constructor.</Resolution>
+   </Rule>
    <Rule TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018">
     <Resolution Name="Inherited">Even though attribute {0} inherits AttributeUsage from its base type, you should consider explicitly specifying AttributeUsage on the type to improve code readability and documentation.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237">
+    <Resolution Name="Default">Add [Serializable] to {0} as this type implements ISerializable.</Resolution>
+   </Rule>
+   <Rule TypeName="PreferJaggedArraysOverMultidimensional" Category="Microsoft.Performance" CheckId="CA1814">
+    <Resolution Name="Default">{0} is a multidimensional array. Replace it with a jagged array if possible.</Resolution>
+   </Rule>
+   <Rule TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721">
+    <Resolution Name="SameType">The property name {0} is confusing given the existence of method {1}. Rename or remove one of these members.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+    <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
    </Rule>
    <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
     <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
