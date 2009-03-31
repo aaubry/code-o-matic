@@ -61,25 +61,25 @@ namespace CodeOMatic.Validation
 		/// custom attribute on a specific parameter.
 		/// </summary>
 		/// <param name="parameter">The parameter on which the attribute is applied.</param>
+		/// <param name="memberType">The type that will be validated by the attribute.</param>
 		/// <param name="messages">A <see cref="IMessageSink"/> where to write error messages.</param>
 		/// <remarks>
 		/// This method should use <paramref name="messages"/> to report any error encountered
 		/// instead of throwing an exception.
 		/// </remarks>
 		[CLSCompliant(false)]
-		public override void CompileTimeValidate(ParameterDeclaration parameter, IMessageSink messages)
+		public override void CompileTimeValidate(ParameterDeclaration parameter, Type memberType, IMessageSink messages)
 		{
-			base.CompileTimeValidate(parameter, messages);
+			base.CompileTimeValidate(parameter, memberType, messages);
 
-			Type parameterType = parameter.ParameterType.GetSystemType(null, null);
-			bool isString = parameterType == typeof(string);
+			bool isString = memberType == typeof(string);
 
 			if (!isString)
 			{
 				messages.Write(new Message(
 					SeverityType.Error,
 					"PatternAttribute_TypeNotSupported",
-					string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not a string to perform the expression validation on.", parameterType.Name),
+					string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not a string to perform the expression validation on.", memberType.Name),
 					GetType().FullName
 				));
 			}

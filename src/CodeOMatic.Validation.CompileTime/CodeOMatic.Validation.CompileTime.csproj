@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\CodeOMatic.snk</AssemblyOriginatorKeyFile>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +58,21 @@
     <Compile Include="NameGenerator.cs" />
     <Compile Include="ParameterProcessorAdvice.cs" />
     <Compile Include="ParameterProcessorTask.cs" />
+    <Compile Include="Parser\ISelectorVisitor.cs" />
+    <Compile Include="Parser\IterationSelectorPart.cs" />
+    <Compile Include="Parser\MemberSelector.cs" />
+    <Compile Include="Parser\MemberSelectorPart.cs" />
+    <Compile Include="Parser\SelectorPartList.cs" />
+    <Compile Include="Parser\SelectorParser.cs" />
+    <Compile Include="Parser\SelectorParser.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SelectorParser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Parser\SelectorScanner.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SelectorParser.atg</DependentUpon>
+    </Compile>
+    <Compile Include="Parser\SelectorPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +83,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeOMatic.Validation.psplugin" />
+    <None Include="Parser\coco.bat" />
+    <None Include="Parser\Parser.frame" />
+    <None Include="Parser\Scanner.frame" />
+    <None Include="Parser\SelectorParser.atg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Parser\Coco.exe" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DontImportPostSharp>True</DontImportPostSharp>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -77,5 +104,6 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "c:\program files\PostSharp 1.0"</PostBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)Parser\coco.bat" ""$(ProjectDir)Parser"</PreBuildEvent>
   </PropertyGroup>
 </Project>

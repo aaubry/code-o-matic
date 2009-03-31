@@ -19,6 +19,7 @@ namespace CodeOMatic.Validation
 	{
 		private enum ParameterKind
 		{
+			None,
 			String,
 			ICollection,
 			ICollectionOfT
@@ -31,41 +32,40 @@ namespace CodeOMatic.Validation
 		/// custom attribute on a specific parameter.
 		/// </summary>
 		/// <param name="parameter">The parameter on which the attribute is applied.</param>
+		/// <param name="memberType">The type that will be validated by the attribute.</param>
 		/// <param name="messages">A <see cref="IMessageSink"/> where to write error messages.</param>
 		/// <remarks>
 		/// This method should use <paramref name="messages"/> to report any error encountered
 		/// instead of throwing an exception.
 		/// </remarks>
 		[CLSCompliant(false)]
-		public override void CompileTimeValidate(ParameterDeclaration parameter, IMessageSink messages)
+		public override void CompileTimeValidate(ParameterDeclaration parameter, Type memberType, IMessageSink messages)
 		{
-			base.CompileTimeValidate(parameter, messages);
+			base.CompileTimeValidate(parameter, memberType, messages);
 
-			Type parameterType = GetSystemParameter(parameter).ParameterType;
-
-			if (parameterType == typeof(string))
+			if (memberType == typeof(string))
 			{
 				parameterKind = ParameterKind.String;
 				return;
 			}
 
-			if (typeof(ICollection).IsAssignableFrom(parameterType))
+			if (typeof(ICollection).IsAssignableFrom(memberType))
 			{
 				parameterKind = ParameterKind.ICollection;
 				return;
 			}
 
-			if (TypeIsICollectionOfT(parameterType))
+			if (TypeIsICollectionOfT(memberType))
 			{
 				parameterKind = ParameterKind.ICollectionOfT;
-				getCount = CreateGetCountDelegate(parameter.ParameterType.GetSystemType(null, null));
+				getCount = CreateGetCountDelegate(memberType);
 				return;
 			}
 
 			messages.Write(new Message(
 				SeverityType.Error,
 				"NotEmptyAttribute_TypeNotSupported",
-				string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not supported.", parameterType.Name),
+				string.Format(CultureInfo.InvariantCulture, "The type '{0}' is not supported.", memberType.Name),
 				GetType().FullName
 			));
 		}

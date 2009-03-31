@@ -1,6 +1,8 @@
 ﻿using System;
 using MbUnit.Framework;
 using CodeOMatic.Validation;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace CodeOMatic.Validation.UnitTests
 {
@@ -111,6 +113,75 @@ namespace CodeOMatic.Validation.UnitTests
 		public void StaticPropertyNotNull()
 		{
 			StaticHelperProperty = null;
+		}
+
+		private class SelectorsForPropertiesAndFieldsWorkType
+		{
+			public string Name
+			{
+				get;
+				set;
+			}
+
+			public string Email;
+		}
+
+		private void SelectorsForPropertiesAndFieldsWorkHelper(
+			[NotNull(Selectors = ",Name,Email")]
+			SelectorsForPropertiesAndFieldsWorkType value
+		)
+		{
+			Assert.IsNotNull(value);
+			Assert.IsNotNull(value.Name);
+			Assert.IsNotNull(value.Email);
+		}
+
+		[Test]
+		public void SelectorsForPropertiesAndFieldsWork()
+		{
+			SelectorsForPropertiesAndFieldsWorkHelper(new SelectorsForPropertiesAndFieldsWorkType { Name = "aaa", Email = "bbb" });
+		}
+
+		private void SelectorsForCollectionsWorkHelper(
+			[NotNull(Selectors = "*.Values*")]
+			IEnumerable<X> value
+		)
+		{
+			Console.WriteLine("INSIDE METHOD");
+		}
+
+		[Test]
+		public void SelectorsForCollectionsWork()
+		{
+			SelectorsForCollectionsWorkHelper(EnumerateSequence<X>(new[] { new X(EnumerateSequence<string>(new[] { "aaa", "bbb" })), new X(EnumerateSequence<string>(new[] { "ccc", "ddd" })) }));
+		}
+
+		private class X
+		{
+			private IEnumerable<string> values;
+
+			public X(IEnumerable<string> values)
+			{
+				this.values = values;
+			}
+
+			public IEnumerable<string> Values
+			{
+				get
+				{
+					Console.WriteLine("Reading the Values property");
+					return values;
+				}
+			}
+		}
+
+		private IEnumerable<T> EnumerateSequence<T>(IEnumerable<T> sequence)
+		{
+			foreach (var item in sequence)
+			{
+				Console.WriteLine(item);
+				yield return item;
+			}
 		}
 	}
 }
