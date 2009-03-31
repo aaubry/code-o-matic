@@ -15,31 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_09D3CAAFFF5BBB33C5D65B15BCE5E146"
-        "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_09D3CAAFFF5BBB33C5D65B15BCE5E146"
-        "OwnerKey" = "8:_BCFBCA9708DAC9A43D8F1D6B11893CB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1811C64E71867FBDB3FCEA052DD29C54"
-        "OwnerKey" = "8:_09D3CAAFFF5BBB33C5D65B15BCE5E146"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1811C64E71867FBDB3FCEA052DD29C54"
-        "OwnerKey" = "8:_BCFBCA9708DAC9A43D8F1D6B11893CB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1811C64E71867FBDB3FCEA052DD29C54"
+        "MsmKey" = "8:_2FA62779A1F119681A7781830960792C"
         "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,32 +39,56 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BCFBCA9708DAC9A43D8F1D6B11893CB9"
+        "MsmKey" = "8:_D1BDA1160ED90175CE875F5EC5BA400D"
+        "OwnerKey" = "8:_E893FBC8DFAB6A8309DDC39CA450CB34"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D1BDA1160ED90175CE875F5EC5BA400D"
+        "OwnerKey" = "8:_2FA62779A1F119681A7781830960792C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D1BDA1160ED90175CE875F5EC5BA400D"
+        "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E893FBC8DFAB6A8309DDC39CA450CB34"
+        "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E893FBC8DFAB6A8309DDC39CA450CB34"
+        "OwnerKey" = "8:_2FA62779A1F119681A7781830960792C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9CDEFF6A88784C078EB63D005720D13A"
+        "OwnerKey" = "8:_2FA62779A1F119681A7781830960792C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BCFBCA9708DAC9A43D8F1D6B11893CB9"
+        "OwnerKey" = "8:_E893FBC8DFAB6A8309DDC39CA450CB34"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_09D3CAAFFF5BBB33C5D65B15BCE5E146"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1811C64E71867FBDB3FCEA052DD29C54"
+        "OwnerKey" = "8:_D1BDA1160ED90175CE875F5EC5BA400D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -196,20 +196,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_09D3CAAFFF5BBB33C5D65B15BCE5E146"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2FA62779A1F119681A7781830960792C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PostSharp.Core, Version=1.0.11.424, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:CodeOMatic.Validation.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2986ce485abc38a8, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_09D3CAAFFF5BBB33C5D65B15BCE5E146"
+                    "_2FA62779A1F119681A7781830960792C"
                     {
-                    "Name" = "8:PostSharp.Core.dll"
+                    "Name" = "8:CodeOMatic.Validation.Core.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:PostSharp.Core.dll"
+            "SourcePath" = "8:CodeOMatic.Validation.Core.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7D7F9C0C71FF413FBF8D8E851647FD86"
@@ -223,38 +223,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1811C64E71867FBDB3FCEA052DD29C54"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PostSharp.Public, Version=1.0.11.424, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1811C64E71867FBDB3FCEA052DD29C54"
-                    {
-                    "Name" = "8:PostSharp.Public.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:PostSharp.Public.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7D7F9C0C71FF413FBF8D8E851647FD86"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -298,20 +267,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCFBCA9708DAC9A43D8F1D6B11893CB9"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D1BDA1160ED90175CE875F5EC5BA400D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CodeOMatic.Validation.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=2986ce485abc38a8, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:PostSharp.Public, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_BCFBCA9708DAC9A43D8F1D6B11893CB9"
+                    "_D1BDA1160ED90175CE875F5EC5BA400D"
                     {
-                    "Name" = "8:CodeOMatic.Validation.Core.dll"
+                    "Name" = "8:PostSharp.Public.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:CodeOMatic.Validation.Core.dll"
+            "SourcePath" = "8:PostSharp.Public.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7D7F9C0C71FF413FBF8D8E851647FD86"
@@ -325,7 +294,38 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E893FBC8DFAB6A8309DDC39CA450CB34"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:PostSharp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E893FBC8DFAB6A8309DDC39CA450CB34"
+                    {
+                    "Name" = "8:PostSharp.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:PostSharp.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7D7F9C0C71FF413FBF8D8E851647FD86"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -386,10 +386,10 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CodeOMatic.Validation.Installer"
         "ProductCode" = "8:{001D599B-A46D-4EC4-B960-DE5A411AD5FD}"
-        "PackageCode" = "8:{D60077B2-B56C-48ED-AD39-B10BAB5ACBE4}"
+        "PackageCode" = "8:{88B0A273-2E3C-4FE2-95C1-C57B8AE6F304}"
         "UpgradeCode" = "8:{298B527D-2267-4184-97DE-6F581F9014D1}"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
