@@ -85,6 +85,15 @@ namespace CodeOMatic.Web
 			}
 		}
 
+		/// <summary>
+		/// Allows derived classes to perform compile-time initializations.
+		/// </summary>
+		/// <param name="propertyType">Type of the property.</param>
+		protected virtual void CompileTimeInitialize(Type propertyType)
+		{
+			// Nothing to be done
+		}
+
 		///
 		public override bool CompileTimeValidate(MethodBase method)
 		{
