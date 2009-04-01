@@ -461,7 +461,7 @@ namespace CodeOMatic.Validation.CompileTime
 			foreach (var selector in selectors)
 			{
 				// Push the value of the parameter that is being validated.
-				writer.EmitInstructionInt32(OpCodeNumber.Ldarg, 0 + (context.Method.IsStatic ? 0 : 1));
+				writer.EmitInstructionInt32(OpCodeNumber.Ldarg, parameterIndex + (context.Method.IsStatic ? 0 : 1));
 
 				var visitor = new MemberEmitterVisitor(parameter.ParameterType.GetSystemType(null, null), context, writer);
 				selector.Accept(visitor);
