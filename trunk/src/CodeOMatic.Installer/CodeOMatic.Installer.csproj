@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DFC844B0-ABD4-4AC3-A563-CE79797D4637}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeOMatic.Installer</RootNamespace>
+    <AssemblyName>CodeOMatic.Installer</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dummy.cs" />
+    <None Include="PostsharpRequired.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj">
+      <Project>{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}</Project>
+      <Name>CodeOMatic.Validation.CompileTime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj">
+      <Project>{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}</Project>
+      <Name>CodeOMatic.Validation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeOMatic.Validation\CodeOMatic.Validation.csproj">
+      <Project>{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}</Project>
+      <Name>CodeOMatic.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeOMatic.Web\CodeOMatic.Web.csproj">
+      <Project>{B93AC8C6-DE54-4152-8D25-458F618540B6}</Project>
+      <Name>CodeOMatic.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\lib\PostSharp-1.0.12.469-Release-x86.msi">
+      <Link>PostSharp-1.0.12.469-Release-x86.msi</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Build.bat" />
+    <None Include="CodeOMatic.Validation.psplugin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Installer.nsi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>@CALL "$(ProjectDir)Build.bat" "$(ProjectDir)$(OutDir)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

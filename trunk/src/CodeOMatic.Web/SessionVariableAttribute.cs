@@ -14,23 +14,11 @@ namespace CodeOMatic.Web
 		{
 			get
 			{
-				if (HttpContext.Current == null)
-				{
-					throw new InvalidOperationException("This property should only be accessed in the context of an HTTP request.");
-				}
-
-				HttpSessionState session = HttpContext.Current.Session;
-				if (session == null)
-				{
-					throw new InvalidOperationException("There is no session.");
-				}
-
-				return session;
+				return GetSession();
 			}
 		}
 
-		///
-		public override void OnExecution(PostSharp.Laos.MethodExecutionEventArgs eventArgs)
+		private static HttpSessionState GetSession()
 		{
 			if (HttpContext.Current == null)
 			{
@@ -42,7 +30,13 @@ namespace CodeOMatic.Web
 			{
 				throw new InvalidOperationException("There is no session.");
 			}
+			return session;
+		}
 
+		///
+		public override void OnExecution(PostSharp.Laos.MethodExecutionEventArgs eventArgs)
+		{
+			GetSession();
 			base.OnExecution(eventArgs);
 		}
 
