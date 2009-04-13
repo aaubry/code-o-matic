@@ -45,5 +45,16 @@ namespace CodeOMatic.Validation.UnitTests
 		{
 			IntervalHelper(24);
 		}
+
+		private static void DateIntervalHelper([Interval("# 2008-10-24", "# 2009-4-16")] DateTime value)
+		{
+			
+		}
+
+		[Test]
+		public void ValidateDates()
+		{
+			
+		}
 	}
 }

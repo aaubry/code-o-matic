@@ -1,42 +1,43 @@
 ﻿using System;
 using System.Web;
 using System.Web.SessionState;
+using System.Collections.Specialized;
 
 namespace CodeOMatic.Web
 {
 	/// <summary>
-	/// Implements an abstract property as a session variable.
+	/// Implements an abstract property as a query string parameter.
 	/// </summary>
 	[Serializable]
-	public sealed class SessionVariableAttribute : CollectionVariableAttribute
+	public sealed class QueryStringVariableAttribute : CollectionVariableAttribute
 	{
-		private static HttpSessionState Session
+		private static NameValueCollection QueryString
 		{
 			get
 			{
-				return GetSession();
+				return GetQueryString();
 			}
 		}
 
-		private static HttpSessionState GetSession()
+		private static NameValueCollection GetQueryString()
 		{
-			if (HttpContext.Current == null)
+			if (HttpContext.Current == null || HttpContext.Current.Request == null)
 			{
 				throw new InvalidOperationException("This property should only be accessed in the context of an HTTP request.");
 			}
 
-			HttpSessionState session = HttpContext.Current.Session;
-			if (session == null)
+			NameValueCollection queryString = HttpContext.Current.Request.QueryString;
+			if (queryString == null)
 			{
-				throw new InvalidOperationException("There is no session.");
+				throw new InvalidOperationException("There is no query string.");
 			}
-			return session;
+			return queryString;
 		}
 
 		///
 		public override void OnExecution(PostSharp.Laos.MethodExecutionEventArgs eventArgs)
 		{
-			GetSession();
+			GetQueryString();
 			base.OnExecution(eventArgs);
 		}
 
@@ -47,7 +48,7 @@ namespace CodeOMatic.Web
 		/// <returns></returns>
 		protected override object GetValue(object target)
 		{
-			return Session[Key] ?? GetDefaultValue(target);
+			return QueryString[Key] ?? GetDefaultValue(target);
 		}
 
 		/// <summary>
@@ -58,7 +59,7 @@ namespace CodeOMatic.Web
 		/// <param name="defaultValue">The default value for the property.</param>
 		protected override void SetValue(object target, object value, object defaultValue)
 		{
-			Session[Key] = value;
+			QueryString[Key] = value != null ? value.ToString() : null;
 		}
 	}
 }
