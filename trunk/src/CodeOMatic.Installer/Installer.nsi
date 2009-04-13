@@ -1,6 +1,6 @@
 Name "CodeOMatic"
 OutFile "CodeOMatic.exe"
-InstallDir "$PROGRAMFILES\_PostSharp 1.0"
+InstallDir "$PROGRAMFILES\PostSharp 1.0"
 RequestExecutionLevel admin
 
 Page components
