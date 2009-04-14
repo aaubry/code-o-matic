@@ -46,15 +46,29 @@ namespace CodeOMatic.Validation.UnitTests
 			IntervalHelper(24);
 		}
 
-		private static void DateIntervalHelper([Interval("# 2008-10-24", "# 2009-4-16")] DateTime value)
+		private static void DateIntervalHelper([Interval("[date] 2008-10-24", "[date] 2009-4-16")] DateTime value)
 		{
 			
 		}
 
 		[Test]
-		public void ValidateDates()
+		public void ValidateDates_Valid()
 		{
-			
+			DateIntervalHelper(new DateTime(2008, 11, 1));
+		}
+
+		[Test]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public void ValidateDates_Less()
+		{
+			DateIntervalHelper(new DateTime(2007, 11, 1));
+		}
+
+		[Test]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public void ValidateDates_Greater()
+		{
+			DateIntervalHelper(new DateTime(2009, 11, 1));
 		}
 	}
 }
