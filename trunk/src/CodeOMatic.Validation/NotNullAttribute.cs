@@ -55,8 +55,24 @@ namespace CodeOMatic.Validation
 		{
 			if (value == null)
 			{
-				throw new ArgumentNullException("value");
+				ValidationFailed(
+					string.Format(CultureInfo.InvariantCulture, "The parameter '{0}' is null.", parameterName),
+					value,
+					parameterName
+				);
 			}
+		}
+
+		/// <summary>
+		/// Creates the default exception for the validator.
+		/// </summary>
+		/// <param name="errorMessage">The error message.</param>
+		/// <param name="parameterName">Name of the parameter that is being validated.</param>
+		/// <param name="parameterValue">The value of the parameter.</param>
+		/// <returns></returns>
+		protected override Exception CreateDefaultException(string errorMessage, string parameterName, object parameterValue)
+		{
+			return new ArgumentNullException(parameterName, errorMessage);
 		}
 	}
 }

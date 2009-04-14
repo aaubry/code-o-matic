@@ -3,6 +3,7 @@ using MbUnit.Framework;
 using CodeOMatic.Validation;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 
 namespace CodeOMatic.Validation.UnitTests
 {
@@ -155,6 +156,14 @@ namespace CodeOMatic.Validation.UnitTests
 		{
 			SelectorsForCollectionsWorkHelper(EnumerateSequence<X>(new[] { new X(EnumerateSequence<string>(new[] { "aaa", "bbb" })), new X(EnumerateSequence<string>(new[] { "ccc", "ddd" })) }));
 		}
+
+		private static void SelectorsHelper(
+			[Values(true, Selectors = "CanRead")]
+			Stream value
+		)
+		{
+		}
+
 
 		private class X
 		{

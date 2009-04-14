@@ -34,7 +34,6 @@ Section "Code-o-matic"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\CodeOMatic" "NoModify" 1
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\CodeOMatic" "NoRepair" 1
 	WriteUninstaller "uninstall.exe"
-	
 SectionEnd
 
 Section "Uninstall"

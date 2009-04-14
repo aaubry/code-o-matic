@@ -69,6 +69,7 @@
     <Compile Include="SpecificExceptionMethodValidatorAttribute.cs" />
     <Compile Include="SpecificExceptionParameterValidatorAttribute.cs" />
     <Compile Include="TwoParametersValidatorAttribute.cs" />
+    <Compile Include="ValuesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj">

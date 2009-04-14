@@ -240,12 +240,15 @@ namespace CodeOMatic.Validation.CompileTime
 
 			protected override void Visit(FieldInfo field)
 			{
-				writer.EmitInstructionInt32(OpCodeNumber.Ldfld, field.MetadataToken);
+				ModuleDeclaration module = context.Method.Module;
+				writer.EmitInstructionField(OpCodeNumber.Ldfld, module.FindField(field, BindingOptions.Default));
 			}
 
 			protected override void Visit(PropertyInfo property)
 			{
-				writer.EmitInstructionInt32(OpCodeNumber.Callvirt, property.GetGetMethod().MetadataToken);
+				ModuleDeclaration module = context.Method.Module;
+				var method = module.FindMethod(property.GetGetMethod(), BindingOptions.Default);
+				writer.EmitInstructionMethod(OpCodeNumber.Callvirt, method);
 			}
 
 			protected override void VisitGenericEnumerable(Type interfaceType)
@@ -443,6 +446,7 @@ namespace CodeOMatic.Validation.CompileTime
 		{
 			IEnumerable<MemberSelector> selectors;
 			string selectorsText = ValidatorInstance.Selectors;
+
 			if (string.IsNullOrEmpty(selectorsText))
 			{
 				selectors = defaultSelectors;
