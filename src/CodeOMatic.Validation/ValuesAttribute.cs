@@ -57,7 +57,7 @@ namespace CodeOMatic.Validation
 				throw new ArgumentException("The list of values cannot be empty", "values");
 			}
 
-			this.values = values;
+			this.values = Array.ConvertAll(values, value => ParseString(value));
 		}
 
 		/// <summary>

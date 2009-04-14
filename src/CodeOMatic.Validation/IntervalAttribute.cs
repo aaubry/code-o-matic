@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using CodeOMatic.Validation.Core;
 using PostSharp.Extensibility;
 using PostSharp.CodeModel;
 
@@ -78,8 +79,8 @@ namespace CodeOMatic.Validation
 		/// <param name="max">The maximum value that the parameter can have.</param>
 		public IntervalAttribute(object min, object max)
 		{
-			this.min = min;
-			this.max = max;
+			this.min = ParseString(min);
+			this.max = ParseString(max);
 		}
 
 		/// <summary>

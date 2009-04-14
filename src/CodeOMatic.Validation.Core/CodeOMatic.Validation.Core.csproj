@@ -57,6 +57,7 @@
     <Compile Include="ParameterKindDetector.cs" />
     <Compile Include="ParameterKinds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringConverter.cs" />
     <Compile Include="ValidatorAttribute.cs" />
   </ItemGroup>
   <PropertyGroup>
