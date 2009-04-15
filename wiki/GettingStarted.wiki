@@ -4,16 +4,15 @@
 
 This page contains walkthrough steps that will get you started with code-o-matic.
 
-Before you start, you need to install [http://www.postsharp.org/ Postsharp] on your development machine.
-
 = Using the validation library =
 
-  # Install the validation plug-in by running *CodeOMatic.Validation.Installer.msi*.
+  # Install the validation plug-in by running *CodeOMatic.x.y.z.exe*. This will also install PostSharp.
   # Open your project.
-  # Add references to the following assemblies (in C:\Program Files\PostSharp 1.0):
+  # Add references to the following assemblies (in *C:\Program Files\PostSharp 1.0*):
     * PostSharp.Core.dll
     * PostSharp.Public.dll
-  # Add references to the following assemblies (from code-o-matic):
+  # Add references to the following assemblies (in *C:\Program Files\PostSharp 1.0\CodeOMatic*):
+    * CodeOMatic.Core.dll
     * CodeOMatic.Validation.dll
     * CodeOMatic.Validation.Core.dll
   # Apply validation attributes to your method and properties, as described in   ValidationExamples.
