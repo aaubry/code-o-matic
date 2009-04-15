@@ -73,6 +73,10 @@
     <Compile Include="ValuesTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CodeOMatic.Core\CodeOMatic.Core.csproj">
+      <Project>{A19865A8-76A1-4823-BA3A-0718C5697D64}</Project>
+      <Name>CodeOMatic.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj">
       <Project>{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}</Project>
       <Name>CodeOMatic.Validation.CompileTime</Name>

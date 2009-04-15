@@ -63,6 +63,12 @@
     <Compile Include="SessionVariableAttribute.cs" />
     <Compile Include="ViewStateVariableAttribute.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeOMatic.Core\CodeOMatic.Core.csproj">
+      <Project>{A19865A8-76A1-4823-BA3A-0718C5697D64}</Project>
+      <Name>CodeOMatic.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>

@@ -72,6 +72,10 @@
     <Compile Include="ValuesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeOMatic.Core\CodeOMatic.Core.csproj">
+      <Project>{A19865A8-76A1-4823-BA3A-0718C5697D64}</Project>
+      <Name>CodeOMatic.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj">
       <Project>{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}</Project>
       <Name>CodeOMatic.Validation.Core</Name>

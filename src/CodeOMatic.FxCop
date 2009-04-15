@@ -21,6 +21,7 @@
   <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
  </ProjectOptions>
  <Targets>
+  <Target Name="$(ProjectDir)/CodeOMatic.Core/bin/Release/CodeOMatic.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation.CompileTime/bin/Release/CodeOMatic.Validation.CompileTime.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation.Core/bin/Release/CodeOMatic.Validation.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation/bin/Release/CodeOMatic.Validation.dll" Analyze="True" AnalyzeAllChildren="True" />
@@ -43,6 +44,21 @@
  </Rules>
  <FxCopReport Version="1.36">
   <Namespaces>
+   <Namespace Name="CodeOMatic.Core">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-04-15 11:44:56Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Core</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="15" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
    <Namespace Name="CodeOMatic.Validation">
     <Messages>
      <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-01-15 19:59:44Z">
@@ -105,6 +121,25 @@
    </Namespace>
   </Namespaces>
   <Targets>
+   <Target Name="$(ProjectDir)/CodeOMatic.Core/bin/Release/CodeOMatic.Core.dll">
+    <Modules>
+     <Module Name="codeomatic.core.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-04-15 11:44:56Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Core.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="15" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
    <Target Name="$(ProjectDir)/CodeOMatic.Validation.CompileTime/bin/Release/CodeOMatic.Validation.CompileTime.dll">
     <Modules>
      <Module Name="codeomatic.validation.compiletime.dll">
@@ -781,6 +816,7 @@
     <Note Id="12" Modified="2009-04-15 08:46:10Z">This code is compilde-genarted. I can't fix it.</Note>
     <Note Id="13" Modified="2009-04-15 08:49:08Z">Adding the AttributeUsage attribute would violate the DRY principle.</Note>
     <Note Id="14" Modified="2009-04-15 08:52:46Z">Adding the AttributeUsage attribute would violate the DRY principle.</Note>
+    <Note Id="15" Modified="2009-04-15 11:45:15Z">The spelling is correct.</Note>
    </User>
   </Notes>
   <Rules>

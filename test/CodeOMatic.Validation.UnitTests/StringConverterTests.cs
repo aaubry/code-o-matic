@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeOMatic.Validation.Core;
+using CodeOMatic.Core;
 using MbUnit.Framework;
 
 namespace CodeOMatic.Validation.UnitTests
