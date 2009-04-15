@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Collections.Generic;
+using CodeOMatic.Core;
 
 namespace CodeOMatic.Validation
 {
@@ -58,7 +59,7 @@ namespace CodeOMatic.Validation
 				throw new ArgumentException("The list of values cannot be empty", "values");
 			}
 
-			this.values = Array.ConvertAll(values, value => ParseString(value));
+			this.values = Array.ConvertAll(values, value => StringConverter.ConvertIfString(value));
 		}
 
 		/// <summary>

@@ -30,17 +30,5 @@ namespace CodeOMatic.Validation.Core
 			requirements.Tasks.Add("ParameterProcessor");
 			return requirements;
 		}
-
-		/// <summary>
-		/// If the <paramref name="value"/> parameter is a string, converts it to object using the <see cref="StringConverter"/> class.
-		/// Otherwise, returns the value of the parameter.
-		/// </summary>
-		/// <param name="value">The value.</param>
-		/// <returns></returns>
-        protected static object ParseString(object value)
-		{
-			string text = value as string;
-			return text != null ? StringConverter.Convert(text) : value;
-		}
 	}
 }

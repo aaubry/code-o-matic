@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Reflection;
+using CodeOMatic.Core;
 using PostSharp.Extensibility;
 using PostSharp.Laos;
 using System.Diagnostics;
@@ -66,7 +67,7 @@ namespace CodeOMatic.Web
 			}
 			set
 			{
-				defaultValue = value;
+				defaultValue = StringConverter.ConvertIfString(value);
 			}
 		}
 

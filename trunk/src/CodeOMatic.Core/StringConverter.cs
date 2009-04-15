@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Globalization;
 
-namespace CodeOMatic.Validation.Core
+namespace CodeOMatic.Core
 {
 	/// <summary>
 	/// Converts strings to objects.
@@ -131,6 +131,18 @@ namespace CodeOMatic.Validation.Core
 			{
 				return value;
 			}
+		}
+
+		/// <summary>
+		/// If the <paramref name="value"/> parameter is a string, converts it to object using the <see cref="Convert"/> class.
+		/// Otherwise, returns the value of the parameter.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns></returns>
+		public static object ConvertIfString(object value)
+		{
+			string text = value as string;
+			return text != null ? Convert(text) : value;
 		}
 
 		private static StringParsingFunction GetParsingFunction(Type type)
