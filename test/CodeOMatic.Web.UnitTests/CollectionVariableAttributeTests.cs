@@ -86,7 +86,7 @@ namespace CodeOMatic.Web.UnitTests
 	{
 		protected override object GetValue(object target)
 		{
-			return GetDefaultValue(target);
+			return CalculateDefaultValue(target);
 		}
 
 		protected override void SetValue(object target, object value, object defaultValue)

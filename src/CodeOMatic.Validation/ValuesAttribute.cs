@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace CodeOMatic.Validation
 {
@@ -8,7 +9,7 @@ namespace CodeOMatic.Validation
 	/// </summary>
 	[Serializable]
 	[CLSCompliant(false)]
-	public class ValuesAttribute : SpecificExceptionParameterValidatorAttribute
+	public sealed class ValuesAttribute : SpecificExceptionParameterValidatorAttribute
 	{
 		private readonly object[] values;
 
@@ -16,7 +17,7 @@ namespace CodeOMatic.Validation
 		/// Gets the values.
 		/// </summary>
 		/// <value>The values.</value>
-		public object[] Values
+		public IList<object> Values
 		{
 			get
 			{

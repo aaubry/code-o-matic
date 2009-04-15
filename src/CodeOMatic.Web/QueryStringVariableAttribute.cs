@@ -48,7 +48,7 @@ namespace CodeOMatic.Web
 		/// <returns></returns>
 		protected override object GetValue(object target)
 		{
-			return QueryString[Key] ?? GetDefaultValue(target);
+			return QueryString[Key] ?? CalculateDefaultValue(target);
 		}
 
 		/// <summary>

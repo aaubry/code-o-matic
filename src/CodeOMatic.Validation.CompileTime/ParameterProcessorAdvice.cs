@@ -349,37 +349,6 @@ namespace CodeOMatic.Validation.CompileTime
 		}
 		#endregion
 
-		#region SelectorInfo
-		private struct SelectorInfo
-		{
-			private readonly MemberSelector selector;
-
-			public MemberSelector Selector
-			{
-				get
-				{
-					return selector;
-				}
-			}
-
-			private readonly Type memberType;
-
-			public Type MemberType
-			{
-				get
-				{
-					return memberType;
-				}
-			}
-
-			public SelectorInfo(MemberSelector selector, Type memberType)
-			{
-				this.selector = selector;
-				this.memberType = memberType;
-			}
-		}
-		#endregion
-
 		/// <summary>
 		/// Method called at compile-time to validate the application of this
 		/// custom attribute on a specific method.
@@ -395,7 +364,7 @@ namespace CodeOMatic.Validation.CompileTime
 			string selectorsText = attributeInstance.Selectors ?? string.Empty;
 
 			SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectorsText))));
-			parser.errors.errorStream = new StringWriter();
+			parser.errors.errorStream = new StringWriter(CultureInfo.InvariantCulture);
 			IEnumerable<MemberSelector> memberSelectors = parser.Parse();
 			if (parser.errors.count > 0)
 			{
@@ -454,7 +423,7 @@ namespace CodeOMatic.Validation.CompileTime
 			else
 			{
 				SelectorParser parser = new SelectorParser(new SelectorScanner(new MemoryStream(Encoding.UTF8.GetBytes(selectorsText))));
-				parser.errors.errorStream = new StringWriter();
+				parser.errors.errorStream = new StringWriter(CultureInfo.InvariantCulture);
 				selectors = parser.Parse();
 				if (parser.errors.count > 0)
 				{

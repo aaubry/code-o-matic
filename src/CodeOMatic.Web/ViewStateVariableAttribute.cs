@@ -106,7 +106,7 @@ namespace CodeOMatic.Web
 			{
 				value = GetField(target).GetValue(target);
 			}
-			return value ?? GetDefaultValue(target);
+			return value ?? CalculateDefaultValue(target);
 		}
 
 		/// <summary>

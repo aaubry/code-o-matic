@@ -47,7 +47,7 @@ namespace CodeOMatic.Web
 		/// <returns></returns>
 		protected override object GetValue(object target)
 		{
-			return Session[Key] ?? GetDefaultValue(target);
+			return Session[Key] ?? CalculateDefaultValue(target);
 		}
 
 		/// <summary>
