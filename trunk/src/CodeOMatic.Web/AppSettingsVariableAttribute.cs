@@ -34,7 +34,7 @@ namespace CodeOMatic.Web
 				return Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
 			} else
 			{
-				return GetDefaultValue(target);
+				return CalculateDefaultValue(target);
 			}
 		}
 

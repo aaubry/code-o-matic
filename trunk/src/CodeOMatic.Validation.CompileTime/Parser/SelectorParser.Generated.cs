@@ -196,7 +196,7 @@ internal class Errors {
 	}
 } // Errors
 
-
+[Serializable]
 internal class FatalError: Exception {
 	public FatalError(string m): base(m) {}
 }

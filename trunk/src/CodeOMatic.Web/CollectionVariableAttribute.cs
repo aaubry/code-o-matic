@@ -193,6 +193,7 @@ namespace CodeOMatic.Web
 		{
 			base.RuntimeInitialize(method);
 
+			MethodInfo methodInfo = (MethodInfo)method;
 			if (defaultValueMethod != null && isGetter)
 			{
 				MethodInfo defaultMethod = method.DeclaringType.GetMethod(
@@ -203,7 +204,7 @@ namespace CodeOMatic.Web
 					null
 				);
 
-				Type returnType = ((MethodInfo)method).ReturnType;
+				Type returnType = methodInfo.ReturnType;
 
 				if (defaultMethod.IsStatic)
 				{
@@ -234,7 +235,7 @@ namespace CodeOMatic.Web
 			}
 			else if (defaultValue == null)
 			{
-				Type propertyType = isGetter ? ((MethodInfo)method).ReturnType : method.GetParameters()[0].ParameterType;
+				Type propertyType = isGetter ? methodInfo.ReturnType : method.GetParameters()[0].ParameterType;
 
 				// If no default value is specified, get the default value for that type.
 				MethodInfo openGetDefault = typeof(CollectionVariableAttribute).GetMethod("GetDefault", BindingFlags.Static | BindingFlags.NonPublic);
@@ -262,11 +263,11 @@ namespace CodeOMatic.Web
 		/// </summary>
 		/// <param name="target">The object from which the property should be obtained.</param>
 		/// <returns></returns>
-		protected object GetDefaultValue(object target)
+		protected object CalculateDefaultValue(object target)
 		{
 			if (!isGetter)
 			{
-				throw new NotSupportedException("The GetDefaultValue method can only be invoked inside the GetValue method.");
+				throw new NotSupportedException("The CalculateDefaultValue method can only be invoked inside the GetValue method.");
 			}
 			return defaultValueMethodStub != null ? defaultValueMethodStub(target) : defaultValue;
 		}

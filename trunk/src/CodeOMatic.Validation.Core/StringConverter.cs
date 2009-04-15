@@ -123,7 +123,7 @@ namespace CodeOMatic.Validation.Core
 				StringParsingFunction parser = GetParsingFunction(type);
 				return parser(match.Groups["Value"].Value);
 			}
-			else if(value.StartsWith("["))
+			else if(value.StartsWith("[", StringComparison.Ordinal))
 			{
 				throw new ArgumentException("The specified value starts with '[' but could not be parsed. This usually indicates an error in the string. If you don't want this string to be converted, append '[] ' at the beginning.");
 			}

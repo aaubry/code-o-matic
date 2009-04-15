@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Globalization;
 
 namespace CodeOMatic.Validation.CompileTime.Parser {
 
@@ -51,7 +52,7 @@ internal class Buffer {
 
 		buf = new byte[(bufLen>0) ? bufLen : MIN_BUFFER_LENGTH];
 		if (fileLen > 0) Pos = 0; // setup buffer to position 0 (start)
-		else bufPos = 0; // index 0 is already after the file, thus Pos = 0 is invalid
+		//else bufPos = 0; // index 0 is already after the file, thus Pos = 0 is invalid
 		if (bufLen == fileLen && stream.CanSeek) Close();
 	}
 	
@@ -259,7 +260,7 @@ internal class SelectorScanner {
 			NextCh(); int ch1 = ch;
 			NextCh(); int ch2 = ch;
 			if (ch1 != 0xBB || ch2 != 0xBF) {
-				throw new FatalError(String.Format("illegal byte order mark: EF {0,2:X} {1,2:X}", ch1, ch2));
+				throw new FatalError(String.Format(CultureInfo.InvariantCulture, "illegal byte order mark: EF {0,2:X} {1,2:X}", ch1, ch2));
 			}
 			buffer = new UTF8Buffer(buffer); col = 0;
 			NextCh();
