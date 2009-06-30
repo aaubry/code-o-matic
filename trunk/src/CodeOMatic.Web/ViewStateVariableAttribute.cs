@@ -5,6 +5,7 @@ using PostSharp.CodeModel;
 using PostSharp.CodeModel.ReflectionWrapper;
 using PostSharp.Extensibility;
 using System.Web.UI;
+using System.Diagnostics;
 
 namespace CodeOMatic.Web
 {
@@ -79,13 +80,16 @@ namespace CodeOMatic.Web
 		[NonSerialized]
 		private FieldInfo field;
 
-		private FieldInfo GetField(object target)
+		/// <summary>
+		/// Runtimes the initialize.
+		/// </summary>
+		/// <param name="method">The method.</param>
+		public override void RuntimeInitialize(MethodBase method)
 		{
-			if(field == null)
-			{
-				field = target.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
-			}
-			return field;
+			base.RuntimeInitialize(method);
+
+			field = method.DeclaringType.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
+			Debug.Assert(field != null);
 		}
 
 		/// <summary>
@@ -104,7 +108,7 @@ namespace CodeOMatic.Web
 			}
 			else
 			{
-				value = GetField(target).GetValue(target);
+				value = field.GetValue(target);
 			}
 			return value ?? CalculateDefaultValue(target);
 		}
@@ -123,7 +127,7 @@ namespace CodeOMatic.Web
 				StateBag viewState = getViewState(control);
 				viewState[Key] = value;
 			}
-			GetField(target).SetValue(target, value);
+			field.SetValue(target, value);
 		}
 	}
 }

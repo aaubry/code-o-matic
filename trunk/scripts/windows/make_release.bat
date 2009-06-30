@@ -31,7 +31,7 @@ IF [%1] == [] (
 
 SET REVISION=0
 IF [%2] == [] (
-	FOR /F "tokens=1,2" %%I IN ('svn info .') DO (
+	FOR /F "tokens=1,2" %%I IN ('svn info https://code-o-matic.googlecode.com/svn/trunk') DO (
 		IF [%%I]==[Revision:] (
 			SET REVISION=%%J
 		)

@@ -22,10 +22,12 @@ Section "Code-o-matic"
 	File CodeOMatic.Validation.psplugin
 	File CodeOMatic.Validation.CompileTime.dll
 	File CodeOMatic.Validation.Core.dll
+	File CodeOMatic.Core.dll
 
 	SetOutPath $INSTDIR\CodeOMatic
 	File CodeOMatic.Validation.Core.dll
 	File CodeOMatic.Validation.dll
+	File CodeOMatic.Core.dll
 	File CodeOMatic.Web.dll
 	File PostsharpRequired.cs
 	
@@ -42,10 +44,12 @@ Section "Uninstall"
 	Delete "$INSTDIR\CodeOMatic.Validation.psplugin"
 	Delete "$INSTDIR\CodeOMatic.Validation.CompileTime.dll"
 	Delete "$INSTDIR\CodeOMatic.Validation.Core.dll"
+	Delete "$INSTDIR\CodeOMatic.Core.dll"
 
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Validation.Core.dll"
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Validation.dll"
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Web.dll"
+	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Core.dll"
 	Delete "$INSTDIR\CodeOMatic\PostsharpRequired.cs"
 
 	Delete "$INSTDIR\uninstall.exe"
