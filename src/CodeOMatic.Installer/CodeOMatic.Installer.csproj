@@ -60,6 +60,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\lib\PostSharp-1.0.12.469-Release-x64.msi">
+      <Link>PostSharp-1.0.12.469-Release-x64.msi</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\lib\PostSharp-1.0.12.469-Release-x86.msi">
       <Link>PostSharp-1.0.12.469-Release-x86.msi</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -68,7 +72,10 @@
     <None Include="CodeOMatic.Validation.psplugin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Installer.nsi">
+    <None Include="Installer-x64.nsi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Installer-x86.nsi">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
