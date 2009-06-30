@@ -79,6 +79,13 @@ namespace CodeOMatic.Web.UnitTests
 		{
 			return DateTime.Today;
 		}
+
+		[SessionVariable]
+		private static extern DateTime ExternProperty
+		{
+			get;
+			set;
+		}
 	}
 
 	[Serializable]
