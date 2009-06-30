@@ -1,6 +1,6 @@
 Name "CodeOMatic"
-OutFile "CodeOMatic.exe"
-InstallDir "$PROGRAMFILES\PostSharp 1.0"
+OutFile "CodeOMatic-x64.exe"
+InstallDir "$PROGRAMFILES64\PostSharp 1.0"
 RequestExecutionLevel admin
 
 Page components
@@ -12,9 +12,9 @@ UninstPage instfiles
 
 Section "PostSharp"
 	SetOutPath $TEMP
-	File PostSharp-1.0.12.469-Release-x86.msi
-	ExecWait 'msiexec /i "$TEMP\PostSharp-1.0.12.469-Release-x86.msi" /passive INSTALLLOCATION="$INSTDIR"'
-	Delete "$TEMP\PostSharp-1.0.12.469-Release-x86.msi"
+	File PostSharp-1.0.12.469-Release-x64.msi
+	ExecWait 'msiexec /i "$TEMP\PostSharp-1.0.12.469-Release-x64.msi" /passive INSTALLLOCATION="$INSTDIR"'
+	Delete "$TEMP\PostSharp-1.0.12.469-Release-x64.msi"
 SectionEnd
 
 Section "Code-o-matic"
