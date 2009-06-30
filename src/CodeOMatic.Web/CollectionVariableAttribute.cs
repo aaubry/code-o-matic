@@ -2,9 +2,12 @@
 using System.Globalization;
 using System.Reflection;
 using CodeOMatic.Core;
+using PostSharp.CodeModel.ReflectionWrapper;
 using PostSharp.Extensibility;
 using PostSharp.Laos;
 using System.Diagnostics;
+using PostSharp.CodeModel;
+using System.Collections.Generic;
 
 namespace CodeOMatic.Web
 {
@@ -137,30 +140,29 @@ namespace CodeOMatic.Web
 				}
 				else if (defaultValueMethod != null)
 				{
-					MethodInfo defaultMethod = method.DeclaringType.UnderlyingSystemType.GetMethod(
-						defaultValueMethod,
-						BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic,
-						null,
-						Type.EmptyTypes,
-						null
-					);
+					var wrapper = (IReflectionWrapper<MethodDefDeclaration>)method;
 
-					if (defaultMethod == null)
+					var methods = wrapper.WrappedObject.DeclaringType.Methods;
+
+					var returnType = wrapper.WrappedObject.Module.FindType(propertyType, BindingOptions.Default);
+					MethodSignature signature = new MethodSignature(CallingConvention.Any, returnType, new ITypeSignature[0], 0);
+
+					try
+					{
+						methods.GetMethod(defaultValueMethod, signature, BindingOptions.Default);
+					}
+					catch (BindingException err)
 					{
 						MessageSource.MessageSink.Write(new Message(
 							SeverityType.Error,
 							"CollectionVariableAttribute_DefaultValueMethodNotFound",
-							string.Format(CultureInfo.InvariantCulture, "A method '{0}' without parameters could not be found on the type.", defaultValueMethod),
-							GetType().FullName
-						));
-					}
-					else if (defaultMethod.ReturnType != propertyType.UnderlyingSystemType)
-					{
-						MessageSource.MessageSink.Write(new Message(
-							SeverityType.Error,
-							"CollectionVariableAttribute_DefaultValueMethodHasTheWrongType",
-							"The type of the default value method does not match the type of the property.",
-							GetType().FullName
+							string.Format(CultureInfo.InvariantCulture, "A method '{0}' without parameters and that returns type '{1}' could not be found on the type.", defaultValueMethod, propertyType.Name),
+							string.Empty,
+							GetType().FullName,
+							string.Empty,
+							0,
+							0,
+							err
 						));
 					}
 				}
