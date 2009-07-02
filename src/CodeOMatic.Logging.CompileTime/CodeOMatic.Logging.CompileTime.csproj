@@ -5,17 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A19865A8-76A1-4823-BA3A-0718C5697D64}</ProjectGuid>
+    <ProjectGuid>{1B367085-3972-4349-98B0-CD4A4B612E42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeOMatic.Core</RootNamespace>
-    <AssemblyName>CodeOMatic.Core</AssemblyName>
+    <RootNamespace>CodeOMatic.Logging.CompileTime</RootNamespace>
+    <AssemblyName>CodeOMatic.Logging.CompileTime</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\CodeOMatic.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,7 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Debug\CodeOMatic.Core.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\CodeOMatic.Logging.CompileTime.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,16 +35,32 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>bin\Release\CodeOMatic.Core.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\CodeOMatic.Logging.CompileTime.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PostSharp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\PostSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Public, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\PostSharp.Public.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InitializeLogAdvice.cs" />
+    <Compile Include="InterceptLogCallAdvice.cs" />
+    <Compile Include="LoggingTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeOMatic.Logging\CodeOMatic.Logging.csproj">
+      <Project>{7D451D1A-F00B-4244-BCEC-8AF7C5E8FD10}</Project>
+      <Name>CodeOMatic.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -55,4 +70,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "c:\program files\PostSharp 1.0"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
