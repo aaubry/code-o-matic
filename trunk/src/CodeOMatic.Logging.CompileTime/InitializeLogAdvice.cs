@@ -1,15 +1,13 @@
 ﻿using System;
 using PostSharp.CodeWeaver;
 using PostSharp.CodeModel;
-using PostSharp.Collections;
-using System.Diagnostics;
+using log4net;
 
 namespace CodeOMatic.Logging.CompileTime
 {
-	internal class InitializeLogAdvice : IAdvice
+	internal sealed class InitializeLogAdvice : BaseLogAdvice
 	{
-		#region IAdvice Members
-		public int Priority
+		public override int Priority
 		{
 			get
 			{
@@ -17,46 +15,23 @@ namespace CodeOMatic.Logging.CompileTime
 			}
 		}
 
-		public bool RequiresWeave(WeavingContext context)
+		public override bool RequiresWeave(WeavingContext context)
 		{
-			return FindLoggerField(context) != null;
+			return GetLoggerField(context, false) != null;
 		}
 
-		public void Weave(WeavingContext context, InstructionBlock block)
+		protected override void Weave(WeavingContext context, InstructionWriter writer)
 		{
-			InstructionSequence entrySequence = context.Method.MethodBody.CreateInstructionSequence();
-			block.AddInstructionSequence(entrySequence, NodePosition.Before, null);
-
-			InstructionWriter writer = context.InstructionWriter;
-			
-			writer.AttachInstructionSequence(entrySequence);
-			writer.EmitSymbolSequencePoint(SymbolSequencePoint.Hidden);
-
 			writer.EmitInstructionType(OpCodeNumber.Ldtoken, context.Method.DeclaringType);
 
 			var typeGetType = typeof(Type).GetMethod("GetTypeFromHandle");
 			writer.EmitInstructionMethod(OpCodeNumber.Call, context.Method.Module.FindMethod(typeGetType, BindingOptions.Default));
 
-			var logType = context.Method.Module.FindMethod(Log.LoggerType.GetConstructor(new[] { typeof(Type) }), BindingOptions.Default);
-			writer.EmitInstructionMethod(OpCodeNumber.Newobj, logType);
+			var getLogger = context.Method.Module.FindMethod(typeof(LogManager).GetMethod("GetLogger", new[] { typeof(Type) }), BindingOptions.Default);
+			writer.EmitInstructionMethod(OpCodeNumber.Call, getLogger);
 
-			var loggerField = FindLoggerField(context);
+			var loggerField = GetLoggerField(context, false);
 			writer.EmitInstructionField(OpCodeNumber.Stsfld, loggerField);
-
-			writer.DetachInstructionSequence();
-		}
-		#endregion
-
-		private static FieldDefDeclaration FindLoggerField(WeavingContext context)
-		{
-			foreach (var field in context.Method.DeclaringType.Fields)
-			{
-				if (field.Name == InterceptLogCallAdvice.loggerFieldName)
-				{
-					return field;
-				}
-			}
-			return null;
 		}
 	}
 }
