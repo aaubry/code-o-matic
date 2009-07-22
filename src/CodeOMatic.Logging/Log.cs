@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using log4net;
+using System.Text;
 
 namespace CodeOMatic.Logging
 {
@@ -30,23 +31,12 @@ namespace CodeOMatic.Logging
 	{
 		#region Logger
 		/// <summary>
-		/// Wrapper for the <see cref="ILog"/> interface.
+		/// Wrapper for the <see cref="ILog"/> interface. Do not use this class.
 		/// </summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		[Obsolete("This class is an implementation detail and should not be user in code. Use the static methods of the Log class instead.", true)]
-		public sealed class Logger
+		public static class Logger
 		{
-			private readonly ILog log;
-
-			/// <summary>
-			/// Initializes a new instance of the <see cref="Logger"/> class.
-			/// </summary>
-			/// <param name="type">The type.</param>
-			public Logger(Type type)
-			{
-				log = LogManager.GetLogger(type);
-			}
-
 			#region Logging methods
 			/// <summary>
 			/// Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level including
@@ -55,12 +45,13 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
 			/// <param name="exception">The exception to log, including its stack trace.</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// See the <see cref="M:log4net.ILog.Debug(System.Object)"/> form for more detailed information.
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void Debug(object message, Exception exception)
+			public static void Debug(object message, Exception exception, ILog log)
 			{
 				log.Debug(message, exception);
 			}
@@ -69,6 +60,7 @@ namespace CodeOMatic.Logging
 			/// Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Debug"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -90,7 +82,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void Debug(object message)
+			public static void Debug(object message, ILog log)
 			{
 				log.Debug(message);
 			}
@@ -101,6 +93,7 @@ namespace CodeOMatic.Logging
 			/// <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information</param>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -115,7 +108,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void DebugFormat(IFormatProvider provider, string format, object[] args)
+			public static void DebugFormat(IFormatProvider provider, string format, object[] args, ILog log)
 			{
 				log.DebugFormat(provider, format, args);
 			}
@@ -127,6 +120,7 @@ namespace CodeOMatic.Logging
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
 			/// <param name="arg2">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -141,7 +135,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void DebugFormat(string format, object arg0, object arg1, object arg2)
+			public static void DebugFormat(string format, object arg0, object arg1, object arg2, ILog log)
 			{
 				log.DebugFormat(format, arg0, arg1, arg2);
 			}
@@ -152,6 +146,7 @@ namespace CodeOMatic.Logging
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -166,7 +161,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void DebugFormat(string format, object arg0, object arg1)
+			public static void DebugFormat(string format, object arg0, object arg1, ILog log)
 			{
 				log.DebugFormat(format, arg0, arg1);
 			}
@@ -176,6 +171,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -190,7 +186,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void DebugFormat(string format, object arg0)
+			public static void DebugFormat(string format, object arg0, ILog log)
 			{
 				log.DebugFormat(format, arg0);
 			}
@@ -200,6 +196,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a formatted string with the <see cref="F:log4net.Core.Level.Debug"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -215,7 +212,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public void DebugFormat(string format, object[] args)
+			public static void DebugFormat(string format, object[] args, ILog log)
 			{
 				log.DebugFormat(format, args);
 			}
@@ -227,12 +224,13 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
 			/// <param name="exception">The exception to log, including its stack trace.</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// See the <see cref="M:log4net.ILog.Error(System.Object)"/> form for more detailed information.
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void Error(object message, Exception exception)
+			public static void Error(object message, Exception exception, ILog log)
 			{
 				log.Error(message, exception);
 			}
@@ -241,6 +239,7 @@ namespace CodeOMatic.Logging
 			/// Logs a message object with the <see cref="F:log4net.Core.Level.Error"/> level.
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Error"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -262,7 +261,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void Error(object message)
+			public static void Error(object message, ILog log)
 			{
 				log.Error(message);
 			}
@@ -273,6 +272,7 @@ namespace CodeOMatic.Logging
 			/// <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information</param>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -287,7 +287,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void ErrorFormat(IFormatProvider provider, string format, object[] args)
+			public static void ErrorFormat(IFormatProvider provider, string format, object[] args, ILog log)
 			{
 				log.ErrorFormat(provider, format, args);
 			}
@@ -299,6 +299,7 @@ namespace CodeOMatic.Logging
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
 			/// <param name="arg2">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -313,7 +314,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void ErrorFormat(string format, object arg0, object arg1, object arg2)
+			public static void ErrorFormat(string format, object arg0, object arg1, object arg2, ILog log)
 			{
 				log.ErrorFormat(format, arg0, arg1, arg2);
 			}
@@ -324,6 +325,7 @@ namespace CodeOMatic.Logging
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -338,7 +340,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void ErrorFormat(string format, object arg0, object arg1)
+			public static void ErrorFormat(string format, object arg0, object arg1, ILog log)
 			{
 				log.ErrorFormat(format, arg0, arg1);
 			}
@@ -348,6 +350,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -362,7 +365,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void ErrorFormat(string format, object arg0)
+			public static void ErrorFormat(string format, object arg0, ILog log)
 			{
 				log.ErrorFormat(format, arg0);
 			}
@@ -372,6 +375,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Error"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -387,7 +391,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Error(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
-			public void ErrorFormat(string format, object[] args)
+			public static void ErrorFormat(string format, object[] args, ILog log)
 			{
 				log.ErrorFormat(format, args);
 			}
@@ -399,12 +403,13 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
 			/// <param name="exception">The exception to log, including its stack trace.</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// See the <see cref="M:log4net.ILog.Fatal(System.Object)"/> form for more detailed information.
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void Fatal(object message, Exception exception)
+			public static void Fatal(object message, Exception exception, ILog log)
 			{
 				log.Fatal(message, exception);
 			}
@@ -413,6 +418,7 @@ namespace CodeOMatic.Logging
 			/// Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Fatal"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -434,7 +440,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void Fatal(object message)
+			public static void Fatal(object message, ILog log)
 			{
 				log.Fatal(message);
 			}
@@ -445,6 +451,7 @@ namespace CodeOMatic.Logging
 			/// <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information</param>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -459,7 +466,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void FatalFormat(IFormatProvider provider, string format, object[] args)
+			public static void FatalFormat(IFormatProvider provider, string format, object[] args, ILog log)
 			{
 				log.FatalFormat(provider, format, args);
 			}
@@ -471,6 +478,7 @@ namespace CodeOMatic.Logging
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
 			/// <param name="arg2">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -485,7 +493,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void FatalFormat(string format, object arg0, object arg1, object arg2)
+			public static void FatalFormat(string format, object arg0, object arg1, object arg2, ILog log)
 			{
 				log.FatalFormat(format, arg0, arg1, arg2);
 			}
@@ -496,6 +504,7 @@ namespace CodeOMatic.Logging
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -510,7 +519,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void FatalFormat(string format, object arg0, object arg1)
+			public static void FatalFormat(string format, object arg0, object arg1, ILog log)
 			{
 				log.FatalFormat(format, arg0, arg1);
 			}
@@ -520,6 +529,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -534,7 +544,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void FatalFormat(string format, object arg0)
+			public static void FatalFormat(string format, object arg0, ILog log)
 			{
 				log.FatalFormat(format, arg0);
 			}
@@ -544,6 +554,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Fatal"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -559,7 +570,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
-			public void FatalFormat(string format, object[] args)
+			public static void FatalFormat(string format, object[] args, ILog log)
 			{
 				log.FatalFormat(format, args);
 			}
@@ -571,12 +582,13 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
 			/// <param name="exception">The exception to log, including its stack trace.</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// See the <see cref="M:log4net.ILog.Info(System.Object)"/> form for more detailed information.
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void Info(object message, Exception exception)
+			public static void Info(object message, Exception exception, ILog log)
 			{
 				log.Info(message, exception);
 			}
@@ -585,6 +597,7 @@ namespace CodeOMatic.Logging
 			/// Logs a message object with the <see cref="F:log4net.Core.Level.Info"/> level.
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Info"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -606,7 +619,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void Info(object message)
+			public static void Info(object message, ILog log)
 			{
 				log.Info(message);
 			}
@@ -617,6 +630,7 @@ namespace CodeOMatic.Logging
 			/// <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information</param>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -631,7 +645,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void InfoFormat(IFormatProvider provider, string format, object[] args)
+			public static void InfoFormat(IFormatProvider provider, string format, object[] args, ILog log)
 			{
 				log.InfoFormat(provider, format, args);
 			}
@@ -643,6 +657,7 @@ namespace CodeOMatic.Logging
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
 			/// <param name="arg2">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -657,7 +672,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void InfoFormat(string format, object arg0, object arg1, object arg2)
+			public static void InfoFormat(string format, object arg0, object arg1, object arg2, ILog log)
 			{
 				log.InfoFormat(format, arg0, arg1, arg2);
 			}
@@ -668,6 +683,7 @@ namespace CodeOMatic.Logging
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -682,7 +698,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void InfoFormat(string format, object arg0, object arg1)
+			public static void InfoFormat(string format, object arg0, object arg1, ILog log)
 			{
 				log.InfoFormat(format, arg0, arg1);
 			}
@@ -692,6 +708,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -706,7 +723,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void InfoFormat(string format, object arg0)
+			public static void InfoFormat(string format, object arg0, ILog log)
 			{
 				log.InfoFormat(format, arg0);
 			}
@@ -716,6 +733,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Info"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -731,7 +749,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Info(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
-			public void InfoFormat(string format, object[] args)
+			public static void InfoFormat(string format, object[] args, ILog log)
 			{
 				log.InfoFormat(format, args);
 			}
@@ -739,6 +757,8 @@ namespace CodeOMatic.Logging
 			/// <summary>
 			/// Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Debug"/> level.
 			/// </summary>
+			/// <param name="log">The log.</param>
+			/// <returns></returns>
 			/// <value>
 			/// 	<c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Debug"/> events, <c>false</c> otherwise.
 			/// </value>
@@ -805,17 +825,16 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Debug(System.Object)"/>
 			/// <seealso cref="M:log4net.ILog.DebugFormat(System.IFormatProvider,System.String,System.Object[])"/>
-			public bool IsDebugEnabled
+			public static bool get_IsDebugEnabled(ILog log)
 			{
-				get
-				{
-					return log.IsDebugEnabled;
-				}
+				return log.IsDebugEnabled;
 			}
 
 			/// <summary>
 			/// Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Error"/> level.
 			/// </summary>
+			/// <param name="log">The log.</param>
+			/// <returns></returns>
 			/// <value>
 			/// 	<c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Error"/> events, <c>false</c> otherwise.
 			/// </value>
@@ -825,17 +844,16 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="M:log4net.ILog.Error(System.Object)"/>
 			/// <seealso cref="M:log4net.ILog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public bool IsErrorEnabled
+			public static bool get_IsErrorEnabled(ILog log)
 			{
-				get
-				{
-					return log.IsErrorEnabled;
-				}
+				return log.IsErrorEnabled;
 			}
 
 			/// <summary>
 			/// Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Fatal"/> level.
 			/// </summary>
+			/// <param name="log">The log.</param>
+			/// <returns></returns>
 			/// <value>
 			/// 	<c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Fatal"/> events, <c>false</c> otherwise.
 			/// </value>
@@ -845,17 +863,18 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="M:log4net.ILog.Fatal(System.Object)"/>
 			/// <seealso cref="M:log4net.ILog.FatalFormat(System.IFormatProvider,System.String,System.Object[])"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public bool IsFatalEnabled
+			public static bool get_IsFatalEnabled(ILog log)
 			{
-				get
-				{
-					return log.IsFatalEnabled;
-				}
+				return log.IsFatalEnabled;
 			}
 
 			/// <summary>
 			/// Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Info"/> level.
 			/// </summary>
+			/// <param name="log">The log.</param>
+			/// <returns>
+			/// 	<c>true</c> if [is info enabled] [the specified log]; otherwise, <c>false</c>.
+			/// </returns>
 			/// <value>
 			/// 	<c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Info"/> events, <c>false</c> otherwise.
 			/// </value>
@@ -865,17 +884,16 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="M:log4net.ILog.Info(System.Object)"/>
 			/// <seealso cref="M:log4net.ILog.InfoFormat(System.IFormatProvider,System.String,System.Object[])"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public bool IsInfoEnabled
+			public static bool IsInfoEnabled(ILog log)
 			{
-				get
-				{
-					return log.IsInfoEnabled;
-				}
+				return log.IsInfoEnabled;
 			}
 
 			/// <summary>
 			/// Checks if this logger is enabled for the <see cref="F:log4net.Core.Level.Warn"/> level.
 			/// </summary>
+			/// <param name="log">The log.</param>
+			/// <returns></returns>
 			/// <value>
 			/// 	<c>true</c> if this logger is enabled for <see cref="F:log4net.Core.Level.Warn"/> events, <c>false</c> otherwise.
 			/// </value>
@@ -885,12 +903,9 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
 			/// <seealso cref="M:log4net.ILog.WarnFormat(System.IFormatProvider,System.String,System.Object[])"/>
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
-			public bool IsWarnEnabled
+			public static bool get_IsWarnEnabled(ILog log)
 			{
-				get
-				{
-					return log.IsWarnEnabled;
-				}
+				return log.IsWarnEnabled;
 			}
 
 			/// <summary>
@@ -900,12 +915,13 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
 			/// <param name="exception">The exception to log, including its stack trace.</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// See the <see cref="M:log4net.ILog.Warn(System.Object)"/> form for more detailed information.
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void Warn(object message, Exception exception)
+			public static void Warn(object message, Exception exception, ILog log)
 			{
 				log.Warn(message, exception);
 			}
@@ -914,6 +930,7 @@ namespace CodeOMatic.Logging
 			/// Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.
 			/// </summary>
 			/// <param name="message">The message object to log.</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a message object with the <see cref="F:log4net.Core.Level.Warn"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -935,7 +952,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void Warn(object message)
+			public static void Warn(object message, ILog log)
 			{
 				log.Warn(message);
 			}
@@ -946,6 +963,7 @@ namespace CodeOMatic.Logging
 			/// <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information</param>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -960,7 +978,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void WarnFormat(IFormatProvider provider, string format, object[] args)
+			public static void WarnFormat(IFormatProvider provider, string format, object[] args, ILog log)
 			{
 				log.WarnFormat(provider, format, args);
 			}
@@ -972,6 +990,7 @@ namespace CodeOMatic.Logging
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
 			/// <param name="arg2">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -986,7 +1005,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void WarnFormat(string format, object arg0, object arg1, object arg2)
+			public static void WarnFormat(string format, object arg0, object arg1, object arg2, ILog log)
 			{
 				log.WarnFormat(format, arg0, arg1, arg2);
 			}
@@ -997,6 +1016,7 @@ namespace CodeOMatic.Logging
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
 			/// <param name="arg1">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -1011,7 +1031,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void WarnFormat(string format, object arg0, object arg1)
+			public static void WarnFormat(string format, object arg0, object arg1, ILog log)
 			{
 				log.WarnFormat(format, arg0, arg1);
 			}
@@ -1021,6 +1041,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="arg0">An Object to format</param>
+			/// <param name="log">The log.</param>
 			/// <remarks>
 			/// 	<para>
 			/// The message is formatted using the <c>String.Format</c> method. See
@@ -1035,7 +1056,7 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void WarnFormat(string format, object arg0)
+			public static void WarnFormat(string format, object arg0, ILog log)
 			{
 				log.WarnFormat(format, arg0);
 			}
@@ -1045,6 +1066,7 @@ namespace CodeOMatic.Logging
 			/// </summary>
 			/// <param name="format">A String containing zero or more format items</param>
 			/// <param name="args">An Object array containing zero or more objects to format</param>
+			/// <param name="log">The log.</param>
 			/// <overloads>Log a formatted message string with the <see cref="F:log4net.Core.Level.Warn"/> level.</overloads>
 			/// <remarks>
 			/// 	<para>
@@ -1060,11 +1082,136 @@ namespace CodeOMatic.Logging
 			/// </remarks>
 			/// <seealso cref="M:log4net.ILog.Warn(System.Object,System.Exception)"/>
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
-			public void WarnFormat(string format, object[] args)
+			public static void WarnFormat(string format, object[] args, ILog log)
 			{
 				log.WarnFormat(format, args);
 			}
 			#endregion
+		}
+
+		/// <summary>
+		/// Do not use this class.
+		/// </summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		//[Obsolete("This class is an implementation detail and should not be user in code. Use the static methods of the Log class instead.", true)]
+		public static class LogAttributeHelper
+		{
+			private static string MakeEnterMessage(string methodName, string message, string[] argumentNames, object[] arguments)
+			{
+				StringBuilder entry = new StringBuilder();
+				entry.AppendFormat("Entering method {0}: {1}", methodName, message);
+				for(int i = 0; i < argumentNames.Length; ++i)
+				{
+					entry.AppendFormat("\n  {0} = {1}", argumentNames[i], Convert.ToString(arguments[i]));
+				}
+				return entry.ToString();
+			}
+
+			/// <summary/>
+			public static void EnterDebug(string methodName, string message, string[] argumentNames, object[] arguments, ILog log)
+			{
+				log.Debug(MakeEnterMessage(methodName, message, argumentNames, arguments));
+			}
+
+			/// <summary/>
+			public static void EnterInfo(string methodName, string message, string[] argumentNames, object[] arguments, ILog log)
+			{
+				log.Info(MakeEnterMessage(methodName, message, argumentNames, arguments));
+			}
+
+			/// <summary/>
+			public static void EnterWarn(string methodName, string message, string[] argumentNames, object[] arguments, ILog log)
+			{
+				log.Warn(MakeEnterMessage(methodName, message, argumentNames, arguments));
+			}
+
+			/// <summary/>
+			public static void EnterError(string methodName, string message, string[] argumentNames, object[] arguments, ILog log)
+			{
+				log.Error(MakeEnterMessage(methodName, message, argumentNames, arguments));
+			}
+
+			/// <summary/>
+			public static void EnterFatal(string methodName, string message, string[] argumentNames, object[] arguments, ILog log)
+			{
+				log.Fatal(MakeEnterMessage(methodName, message, argumentNames, arguments));
+			}
+
+			private static string MakeLeaveMessage(string methodName, string message, bool hasReturnValue, object returnValue)
+			{
+				StringBuilder entry = new StringBuilder();
+				entry.AppendFormat("Leaving method {0}: {1}", methodName, message);
+				if (hasReturnValue)
+				{
+					entry.AppendFormat("\n  Return value = {0}", Convert.ToString(returnValue));
+				}
+				return entry.ToString();
+			}
+
+			/// <summary/>
+			public static void LeaveDebug(string methodName, string message, bool hasReturnValue, object returnValue, ILog log)
+			{
+				log.Debug(MakeLeaveMessage(methodName, message, hasReturnValue, returnValue));
+			}
+
+			/// <summary/>
+			public static void LeaveInfo(string methodName, string message, bool hasReturnValue, object returnValue, ILog log)
+			{
+				log.Info(MakeLeaveMessage(methodName, message, hasReturnValue, returnValue));
+			}
+
+			/// <summary/>
+			public static void LeaveWarn(string methodName, string message, bool hasReturnValue, object returnValue, ILog log)
+			{
+				log.Warn(MakeLeaveMessage(methodName, message, hasReturnValue, returnValue));
+			}
+
+			/// <summary/>
+			public static void LeaveError(string methodName, string message, bool hasReturnValue, object returnValue, ILog log)
+			{
+				log.Error(MakeLeaveMessage(methodName, message, hasReturnValue, returnValue));
+			}
+
+			/// <summary/>
+			public static void LeaveFatal(string methodName, string message, bool hasReturnValue, object returnValue, ILog log)
+			{
+				log.Fatal(MakeLeaveMessage(methodName, message, hasReturnValue, returnValue));
+			}
+
+			private static string MakeExceptionMessage(string methodName, string message)
+			{
+				return string.Format("Exception in method {0}: {1}", methodName, message);
+			}
+
+			/// <summary/>
+			public static void ExceptionDebug(Exception exception, string methodName, string message, ILog log)
+			{
+				log.Debug(MakeExceptionMessage(methodName, message), exception);
+			}
+
+			/// <summary/>
+			public static void ExceptionInfo(Exception exception, string methodName, string message, ILog log)
+			{
+				log.Info(MakeExceptionMessage(methodName, message), exception);
+			}
+
+			/// <summary/>
+			public static void ExceptionWarn(Exception exception, string methodName, string message, ILog log)
+			{
+				log.Warn(MakeExceptionMessage(methodName, message), exception);
+			}
+
+			/// <summary/>
+			public static void ExceptionError(Exception exception, string methodName, string message, ILog log)
+			{
+				log.Error(MakeExceptionMessage(methodName, message), exception);
+			}
+
+			/// <summary/>
+			public static void ExceptionFatal(Exception exception, string methodName, string message, ILog log)
+			{
+				log.Fatal(MakeExceptionMessage(methodName, message), exception);
+			}
 		}
 		#endregion
 

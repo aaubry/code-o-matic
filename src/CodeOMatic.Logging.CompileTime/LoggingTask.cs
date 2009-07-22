@@ -4,6 +4,7 @@ using PostSharp.CodeModel;
 using PostSharp.CodeWeaver;
 using PostSharp.Extensibility;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace CodeOMatic.Logging.CompileTime
 {
@@ -34,9 +35,29 @@ namespace CodeOMatic.Logging.CompileTime
 				}
 			}
 
+			codeWeaver.AddMethodLevelAdvice(new LogMethodAdvice(), GetLoggedMethods(), JoinPointKinds.BeforeMethodBody | JoinPointKinds.AfterMethodBodySuccess | JoinPointKinds.AfterMethodBodyException, null);
+
 			codeWeaver.AddTypeLevelAdvice(new InitializeLogAdvice(), JoinPointKinds.BeforeStaticConstructor, Project.Module.Types);
 		}
 		#endregion
+
+		private IEnumerable<MethodDefDeclaration> GetLoggedMethods()
+		{
+			var logAttributeType = Project.Module.FindType(typeof(LogAttribute), BindingOptions.Default);
+			foreach (var type in Project.Module.Types)
+			{
+				foreach(var method in type.Methods)
+				{
+					foreach(var attribute in method.CustomAttributes)
+					{
+						if (logAttributeType.Equals(attribute.Constructor.DeclaringType))
+						{
+							yield return method;
+						}
+					}
+				}
+			}
+		}
         
 		private static IEnumerable<U> Cast<T, U>(IEnumerable<T> enumerable)
 		{
