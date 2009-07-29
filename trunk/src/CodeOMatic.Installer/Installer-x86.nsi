@@ -23,12 +23,18 @@ Section "Code-o-matic"
 	File CodeOMatic.Validation.CompileTime.dll
 	File CodeOMatic.Validation.Core.dll
 	File CodeOMatic.Core.dll
+	File CodeOMatic.Logging.dll
+	File CodeOMatic.Logging.CompileTime.dll
+	File log4net.dll
 
 	SetOutPath $INSTDIR\CodeOMatic
 	File CodeOMatic.Validation.Core.dll
 	File CodeOMatic.Validation.dll
 	File CodeOMatic.Core.dll
 	File CodeOMatic.Web.dll
+	File CodeOMatic.Logging.dll
+	File CodeOMatic.Logging.CompileTime.dll
+	File log4net.dll
 	File PostsharpRequired.cs
 	
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\CodeOMatic" "DisplayName" "Code-o-matic"
@@ -45,12 +51,18 @@ Section "Uninstall"
 	Delete "$INSTDIR\CodeOMatic.Validation.CompileTime.dll"
 	Delete "$INSTDIR\CodeOMatic.Validation.Core.dll"
 	Delete "$INSTDIR\CodeOMatic.Core.dll"
+	Delete "$INSTDIR\CodeOMatic.Logging.dll"
+	Delete "$INSTDIR\CodeOMatic.Logging.CompileTime.dll"
+	Delete "$INSTDIR\log4net.dll"
 
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Validation.Core.dll"
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Validation.dll"
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Web.dll"
 	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Core.dll"
 	Delete "$INSTDIR\CodeOMatic\PostsharpRequired.cs"
+	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Logging.dll"
+	Delete "$INSTDIR\CodeOMatic\CodeOMatic.Logging.CompileTime.dll"
+	Delete "$INSTDIR\CodeOMatic\log4net.dll"
 
 	Delete "$INSTDIR\uninstall.exe"
 
