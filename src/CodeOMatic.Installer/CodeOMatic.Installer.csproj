@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +46,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeOMatic.Logging.CompileTime\CodeOMatic.Logging.CompileTime.csproj">
+      <Project>{1B367085-3972-4349-98B0-CD4A4B612E42}</Project>
+      <Name>CodeOMatic.Logging.CompileTime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeOMatic.Logging\CodeOMatic.Logging.csproj">
+      <Project>{7D451D1A-F00B-4244-BCEC-8AF7C5E8FD10}</Project>
+      <Name>CodeOMatic.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj">
       <Project>{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}</Project>
       <Name>CodeOMatic.Validation.CompileTime</Name>
