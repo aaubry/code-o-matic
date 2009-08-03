@@ -4,13 +4,13 @@ using PostSharp.CodeModel;
 using PostSharp.CodeWeaver;
 using PostSharp.Extensibility;
 using System.Reflection;
-using System.Diagnostics;
 
 namespace CodeOMatic.Logging.CompileTime
 {
 	/// <summary>
 	/// Provides the advices that are needed to implement the logging framework.
 	/// </summary>
+	[CLSCompliant(false)]
 	public class LoggingTask : Task, IAdviceProvider
 	{
 		#region IAdviceProvider Members

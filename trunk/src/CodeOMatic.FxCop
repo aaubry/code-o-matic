@@ -22,6 +22,8 @@
  </ProjectOptions>
  <Targets>
   <Target Name="$(ProjectDir)/CodeOMatic.Core/bin/Release/CodeOMatic.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/CodeOMatic.Logging.CompileTime/bin/Release/CodeOMatic.Logging.CompileTime.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/CodeOMatic.Logging/bin/Release/CodeOMatic.Logging.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation.CompileTime/bin/Release/CodeOMatic.Validation.CompileTime.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation.Core/bin/Release/CodeOMatic.Validation.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/CodeOMatic.Validation/bin/Release/CodeOMatic.Validation.dll" Analyze="True" AnalyzeAllChildren="True" />
@@ -54,6 +56,46 @@
       <Notes>
        <User Name="antoine.aubry">
         <Note Id="15" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="CodeOMatic.Logging">
+    <Messages>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Logging</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="25" />
+       </User>
+      </Notes>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="CodeOMatic.Logging.CompileTime">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2009-08-03 14:17:50Z">
+      <Issue>
+       <Item>CodeOMatic.Logging.CompileTime</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="26" />
+       </User>
+      </Notes>
+     </Message>
+     <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+      <Issue Name="Namespace">
+       <Item>Matic</Item>
+       <Item>CodeOMatic.Logging.CompileTime</Item>
+      </Issue>
+      <Notes>
+       <User Name="antoine.aubry">
+        <Note Id="22" />
        </User>
       </Notes>
      </Message>
@@ -137,6 +179,1216 @@
         </Notes>
        </Message>
       </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/CodeOMatic.Logging.CompileTime/bin/Release/CodeOMatic.Logging.CompileTime.dll">
+    <Modules>
+     <Module Name="codeomatic.logging.compiletime.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Logging.CompileTime.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="21" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/CodeOMatic.Logging/bin/Release/CodeOMatic.Logging.dll">
+    <Modules>
+     <Module Name="codeomatic.logging.dll">
+      <Messages>
+       <Message Id="Matic" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+        <Issue Name="Assembly">
+         <Item>Matic</Item>
+         <Item>'CodeOMatic.Logging.dll'</Item>
+        </Issue>
+        <Notes>
+         <User Name="antoine.aubry">
+          <Note Id="25" />
+         </User>
+        </Notes>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="CodeOMatic.Logging">
+        <Types>
+         <Type Name="Log">
+          <Members>
+           <Member Name="#Debug(System.Object)">
+            <Messages>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Debug(object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Debug(System.Object,System.Exception)">
+            <Messages>
+             <Message Id="exception" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'exception'</Item>
+               <Item>'Log.Debug(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Debug(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.DebugFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.DebugFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="provider" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'provider'</Item>
+               <Item>'Log.DebugFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugFormat(System.String,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.DebugFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.DebugFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugFormat(System.String,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.DebugFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.DebugFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.DebugFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugFormat(System.String,System.Object,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.DebugFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.DebugFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg2" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg2'</Item>
+               <Item>'Log.DebugFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.DebugFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#DebugFormat(System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.DebugFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.DebugFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Error(System.Object)">
+            <Messages>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Error(object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Error(System.Object,System.Exception)">
+            <Messages>
+             <Message Id="exception" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'exception'</Item>
+               <Item>'Log.Error(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Error(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.ErrorFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.ErrorFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="provider" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'provider'</Item>
+               <Item>'Log.ErrorFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ErrorFormat(System.String,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.ErrorFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.ErrorFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ErrorFormat(System.String,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.ErrorFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.ErrorFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.ErrorFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ErrorFormat(System.String,System.Object,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.ErrorFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.ErrorFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg2" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg2'</Item>
+               <Item>'Log.ErrorFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.ErrorFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ErrorFormat(System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.ErrorFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.ErrorFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Fatal(System.Object)">
+            <Messages>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Fatal(object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Fatal(System.Object,System.Exception)">
+            <Messages>
+             <Message Id="exception" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'exception'</Item>
+               <Item>'Log.Fatal(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Fatal(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.FatalFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.FatalFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="provider" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'provider'</Item>
+               <Item>'Log.FatalFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FatalFormat(System.String,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.FatalFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.FatalFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FatalFormat(System.String,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.FatalFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.FatalFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.FatalFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FatalFormat(System.String,System.Object,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.FatalFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.FatalFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg2" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg2'</Item>
+               <Item>'Log.FatalFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.FatalFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#FatalFormat(System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.FatalFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.FatalFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Info(System.Object)">
+            <Messages>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Info(object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Info(System.Object,System.Exception)">
+            <Messages>
+             <Message Id="exception" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'exception'</Item>
+               <Item>'Log.Info(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Info(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.InfoFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.InfoFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="provider" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'provider'</Item>
+               <Item>'Log.InfoFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InfoFormat(System.String,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.InfoFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.InfoFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InfoFormat(System.String,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.InfoFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.InfoFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.InfoFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InfoFormat(System.String,System.Object,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.InfoFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.InfoFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg2" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg2'</Item>
+               <Item>'Log.InfoFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.InfoFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#InfoFormat(System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.InfoFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.InfoFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Warn(System.Object)">
+            <Messages>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Warn(object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Warn(System.Object,System.Exception)">
+            <Messages>
+             <Message Id="exception" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'exception'</Item>
+               <Item>'Log.Warn(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="message" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'message'</Item>
+               <Item>'Log.Warn(object, Exception)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.WarnFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.WarnFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="provider" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'provider'</Item>
+               <Item>'Log.WarnFormat(IFormatProvider, string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WarnFormat(System.String,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.WarnFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.WarnFormat(string, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WarnFormat(System.String,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.WarnFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.WarnFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.WarnFormat(string, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WarnFormat(System.String,System.Object,System.Object,System.Object)">
+            <Messages>
+             <Message Id="arg0" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg0'</Item>
+               <Item>'Log.WarnFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg1" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg1'</Item>
+               <Item>'Log.WarnFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="arg2" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'arg2'</Item>
+               <Item>'Log.WarnFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.WarnFormat(string, object, object, object)'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WarnFormat(System.String,System.Object[])">
+            <Messages>
+             <Message Id="args" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'args'</Item>
+               <Item>'Log.WarnFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="format" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Excluded" Created="2009-08-03 14:17:50Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'format'</Item>
+               <Item>'Log.WarnFormat(string, params object[])'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="16" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Log+LogAttributeHelper">
+          <Messages>
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Status="Excluded" Created="2009-08-03 14:17:50Z">
+            <Issue>
+             <Item>'Log.LogAttributeHelper'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="24" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="SimpleLogConfigurator">
+          <Messages>
+           <Message Id="Configurator" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+            <Issue Name="Type">
+             <Item>Configurator</Item>
+             <Item>'SimpleLogConfigurator'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="19" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#CustomizeConfiguration(System.Xml.XmlDocument)">
+            <Messages>
+             <Message Id="System.Xml.XmlNode" TypeName="MembersShouldNotExposeCertainConcreteTypes" Category="Microsoft.Design" CheckId="CA1059" Status="Excluded" Created="2009-08-03 14:17:50Z">
+              <Issue Name="Xml">
+               <Item>'SimpleLogConfigurator.CustomizeConfiguration(XmlDocument)'</Item>
+               <Item>'XmlDocument'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="18" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetApplicationName()">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Excluded" Created="2009-08-03 14:17:50Z">
+              <Issue Certainty="50">
+               <Item>'SimpleLogConfigurator.GetApplicationName()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="17" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#SetAttributes(System.Xml.XmlDocument,System.String,System.String)">
+            <Messages>
+             <Message Id="xpath" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Excluded" Created="2009-08-03 14:17:50Z">
+              <Issue Name="MemberParameter">
+               <Item>'SimpleLogConfigurator.SetAttributes(XmlDocument, string, string)'</Item>
+               <Item>xpath</Item>
+               <Item>'xpath'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="20" />
+               </User>
+              </Notes>
+             </Message>
+             <Message Id="System.Xml.XmlNode" TypeName="MembersShouldNotExposeCertainConcreteTypes" Category="Microsoft.Design" CheckId="CA1059" Status="Excluded" Created="2009-08-03 14:17:50Z">
+              <Issue Name="Xml">
+               <Item>'SimpleLogConfigurator.SetAttributes(XmlDocument, string, string)'</Item>
+               <Item>'XmlDocument'</Item>
+              </Issue>
+              <Notes>
+               <User Name="antoine.aubry">
+                <Note Id="18" />
+               </User>
+              </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
      </Module>
     </Modules>
    </Target>
@@ -764,6 +2016,20 @@
            </Message>
           </Messages>
          </Type>
+         <Type Name="SecureConnectionRequiredAttribute">
+          <Messages>
+           <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-08-03 14:17:50Z">
+            <Issue Name="Inherited" Certainty="75" Level="Warning">
+             <Item>'SecureConnectionRequiredAttribute'</Item>
+            </Issue>
+            <Notes>
+             <User Name="antoine.aubry">
+              <Note Id="23" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
          <Type Name="SessionVariableAttribute">
           <Messages>
            <Message TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018" Status="Excluded" Created="2009-01-15 19:59:44Z">
@@ -817,9 +2083,23 @@
     <Note Id="13" Modified="2009-04-15 08:49:08Z">Adding the AttributeUsage attribute would violate the DRY principle.</Note>
     <Note Id="14" Modified="2009-04-15 08:52:46Z">Adding the AttributeUsage attribute would violate the DRY principle.</Note>
     <Note Id="15" Modified="2009-04-15 11:45:15Z">The spelling is correct.</Note>
+    <Note Id="16" Modified="2009-08-03 14:25:11Z">The parameter is not used because that method is a placeholder that is replaced by a call to another object.</Note>
+    <Note Id="17" Modified="2009-08-03 14:27:04Z">This method does a lot of processing.</Note>
+    <Note Id="18" Modified="2009-08-03 14:27:58Z">The XmlDocument interface is easier to use than IXpathNavigable.</Note>
+    <Note Id="19" Modified="2009-08-03 14:28:18Z">Configurator is spelled correctly.</Note>
+    <Note Id="20" Modified="2009-08-03 14:28:30Z">xpath is spelled correctly.</Note>
+    <Note Id="21" Modified="2009-08-03 14:28:53Z">Matic belongs to "Code-o-matic", which is spelled correctly.</Note>
+    <Note Id="22" Modified="2009-08-03 14:28:59Z">Matic belongs to "Code-o-matic", which is spelled correctly.</Note>
+    <Note Id="23" Modified="2009-08-03 14:29:44Z">Adding the AttributeUsage would violate the DRY principle.</Note>
+    <Note Id="24" Modified="2009-08-03 14:30:48Z">This type is an implementation detail, but needs to be publicly visible.</Note>
+    <Note Id="25" Modified="2009-08-03 14:30:55Z">Matic belongs to "Code-o-matic", which is spelled correctly.</Note>
+    <Note Id="26" Modified="2009-08-03 14:31:24Z">This namespace must exist in order to separate the compilt-time types fro the runtime types.</Note>
    </User>
   </Notes>
   <Rules>
+   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
    <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
     <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
    </Rule>
@@ -834,7 +2114,9 @@
    </Rule>
    <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
     <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
+    <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
     <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
    </Rule>
    <Rule TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032">
     <Resolution Name="MissingConstructor">Add the following constructor to {0}: {1}.</Resolution>
@@ -845,8 +2127,17 @@
    <Rule TypeName="MarkAttributesWithAttributeUsage" Category="Microsoft.Design" CheckId="CA1018">
     <Resolution Name="Inherited">Even though attribute {0} inherits AttributeUsage from its base type, you should consider explicitly specifying AttributeUsage on the type to improve code readability and documentation.</Resolution>
    </Rule>
+   <Rule TypeName="MembersShouldNotExposeCertainConcreteTypes" Category="Microsoft.Design" CheckId="CA1059">
+    <Resolution Name="Xml">Modify member {0} so that it no longer exposes the concrete type {1}. Use IXPathNavigable to represent XML data sources.</Resolution>
+   </Rule>
+   <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
+    <Resolution Name="Default">Do not nest type {0}. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
+   </Rule>
    <Rule TypeName="PreferJaggedArraysOverMultidimensional" Category="Microsoft.Performance" CheckId="CA1814">
     <Resolution Name="Default">{0} is a multidimensional array. Replace it with a jagged array if possible.</Resolution>
+   </Rule>
+   <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
+    <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
    </Rule>
    <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
     <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>

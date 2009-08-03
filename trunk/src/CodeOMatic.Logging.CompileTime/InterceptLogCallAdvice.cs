@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using log4net;
 using PostSharp.CodeWeaver;
 using PostSharp.CodeModel;
@@ -51,7 +52,7 @@ namespace CodeOMatic.Logging.CompileTime
 			var loggerMethod = Log.LoggerType.GetMethod(systemMethod.Name, BindingFlags.Public | BindingFlags.Static, null, parameterTypes, null);
 			if (loggerMethod == null)
 			{
-				throw new InvalidOperationException(string.Format("There is a bug in CodeOMatic.Validation. The method '{0}' does not exist in the Logger class", interceptedMethod));
+				throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "There is a bug in CodeOMatic.Validation. The method '{0}' does not exist in the Logger class", interceptedMethod));
 			}
 
 			return module.FindMethod(loggerMethod, BindingOptions.Default);

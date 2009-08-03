@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using log4net;
 using System.Text;
+using System.Globalization;
 
 namespace CodeOMatic.Logging
 {
@@ -214,7 +215,7 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="P:log4net.ILog.IsDebugEnabled"/>
 			public static void DebugFormat(string format, object[] args, ILog log)
 			{
-				log.DebugFormat(format, args);
+				log.DebugFormat(CultureInfo.InvariantCulture, format, args);
 			}
 
 			/// <summary>
@@ -393,7 +394,7 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="P:log4net.ILog.IsErrorEnabled"/>
 			public static void ErrorFormat(string format, object[] args, ILog log)
 			{
-				log.ErrorFormat(format, args);
+				log.ErrorFormat(CultureInfo.InvariantCulture, format, args);
 			}
 
 			/// <summary>
@@ -572,7 +573,7 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="P:log4net.ILog.IsFatalEnabled"/>
 			public static void FatalFormat(string format, object[] args, ILog log)
 			{
-				log.FatalFormat(format, args);
+				log.FatalFormat(CultureInfo.InvariantCulture, format, args);
 			}
 
 			/// <summary>
@@ -751,7 +752,7 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="P:log4net.ILog.IsInfoEnabled"/>
 			public static void InfoFormat(string format, object[] args, ILog log)
 			{
-				log.InfoFormat(format, args);
+				log.InfoFormat(CultureInfo.InvariantCulture, format, args);
 			}
 
 			/// <summary>
@@ -1084,7 +1085,7 @@ namespace CodeOMatic.Logging
 			/// <seealso cref="P:log4net.ILog.IsWarnEnabled"/>
 			public static void WarnFormat(string format, object[] args, ILog log)
 			{
-				log.WarnFormat(format, args);
+				log.WarnFormat(CultureInfo.InvariantCulture, format, args);
 			}
 			#endregion
 		}
@@ -1099,10 +1100,10 @@ namespace CodeOMatic.Logging
 			private static string MakeEnterMessage(string methodName, string message, string[] argumentNames, object[] arguments)
 			{
 				StringBuilder entry = new StringBuilder();
-				entry.AppendFormat("Entering method {0}: {1}", methodName, message);
+				entry.AppendFormat(CultureInfo.InvariantCulture, "Entering method {0}: {1}", methodName, message);
 				for(int i = 0; i < argumentNames.Length; ++i)
 				{
-					entry.AppendFormat("\n  {0} = {1}", argumentNames[i], Convert.ToString(arguments[i]));
+					entry.AppendFormat(CultureInfo.InvariantCulture, "\n  {0} = {1}", argumentNames[i], Convert.ToString(arguments[i], CultureInfo.InvariantCulture));
 				}
 				return entry.ToString();
 			}
@@ -1140,10 +1141,10 @@ namespace CodeOMatic.Logging
 			private static string MakeLeaveMessage(string methodName, string message, bool hasReturnValue, object returnValue)
 			{
 				StringBuilder entry = new StringBuilder();
-				entry.AppendFormat("Leaving method {0}: {1}", methodName, message);
+				entry.AppendFormat(CultureInfo.InvariantCulture, "Leaving method {0}: {1}", methodName, message);
 				if (hasReturnValue)
 				{
-					entry.AppendFormat("\n  Return value = {0}", Convert.ToString(returnValue));
+					entry.AppendFormat(CultureInfo.InvariantCulture, "\n  Return value = {0}", Convert.ToString(returnValue, CultureInfo.InvariantCulture));
 				}
 				return entry.ToString();
 			}
@@ -1180,7 +1181,7 @@ namespace CodeOMatic.Logging
 
 			private static string MakeExceptionMessage(string methodName, string message)
 			{
-				return string.Format("Exception in method {0}: {1}", methodName, message);
+				return string.Format(CultureInfo.InvariantCulture, "Exception in method {0}: {1}", methodName, message);
 			}
 
 			/// <summary/>
