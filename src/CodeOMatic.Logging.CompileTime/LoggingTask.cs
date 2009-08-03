@@ -37,7 +37,18 @@ namespace CodeOMatic.Logging.CompileTime
 
 			codeWeaver.AddMethodLevelAdvice(new LogMethodAdvice(), GetLoggedMethods(), JoinPointKinds.BeforeMethodBody | JoinPointKinds.AfterMethodBodySuccess | JoinPointKinds.AfterMethodBodyException, null);
 
-			codeWeaver.AddTypeLevelAdvice(new InitializeLogAdvice(), JoinPointKinds.BeforeStaticConstructor, Project.Module.Types);
+			codeWeaver.AddTypeLevelAdvice(new InitializeLogAdvice(), JoinPointKinds.BeforeStaticConstructor, GetLogTypes(Project.Module.Types));
+		}
+
+		private static IEnumerable<TypeDefDeclaration> GetLogTypes(IEnumerable<TypeDefDeclaration> typeDefDeclarationCollection)
+		{
+			foreach(var declaration in typeDefDeclarationCollection)
+			{
+				if(declaration.BelongsToClassification(TypeClassifications.Class | TypeClassifications.Struct))
+				{
+					yield return declaration;
+				}
+			}
 		}
 		#endregion
 
