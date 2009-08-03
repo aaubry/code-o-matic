@@ -40,13 +40,22 @@ namespace CodeOMatic.Logging.CompileTime
 			codeWeaver.AddTypeLevelAdvice(new InitializeLogAdvice(), JoinPointKinds.BeforeStaticConstructor, GetLogTypes(Project.Module.Types));
 		}
 
-		private static IEnumerable<TypeDefDeclaration> GetLogTypes(IEnumerable<TypeDefDeclaration> typeDefDeclarationCollection)
+		private static IEnumerable<TypeDefDeclaration> GetLogTypes(IEnumerable<TypeDefDeclaration> types)
 		{
-			foreach(var declaration in typeDefDeclarationCollection)
+			if (types != null)
 			{
-				if(declaration.BelongsToClassification(TypeClassifications.Class | TypeClassifications.Struct))
+				foreach(var declaration in types)
 				{
-					yield return declaration;
+					if(declaration.BelongsToClassification(TypeClassifications.Class) ||
+						declaration.BelongsToClassification(TypeClassifications.Struct))
+					{
+						yield return declaration;
+
+						foreach(var innerType in GetLogTypes(declaration.Types))
+						{
+							yield return innerType;
+						}
+					}
 				}
 			}
 		}
