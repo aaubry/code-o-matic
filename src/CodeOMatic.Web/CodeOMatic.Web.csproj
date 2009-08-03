@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="AppSettingsVariableAttribute.cs" />
     <Compile Include="CollectionVariableAttribute.cs" />
+    <Compile Include="SecureConnectionRequiredAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringVariableAttribute.cs" />
     <Compile Include="SessionVariableAttribute.cs" />

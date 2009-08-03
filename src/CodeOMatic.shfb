@@ -1,6 +1,8 @@
 ﻿<project schemaVersion="1.6.0.7">
     <assemblies>
         <assembly assemblyPath=".\CodeOMatic.Core\bin\Release\CodeOMatic.Core.dll" xmlCommentsPath=".\CodeOMatic.Core\bin\Release\CodeOMatic.Core.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\CodeOMatic.Logging.CompileTime\bin\Release\CodeOMatic.Logging.CompileTime.dll" xmlCommentsPath=".\CodeOMatic.Logging.CompileTime\bin\Release\CodeOMatic.Logging.CompileTime.xml" commentsOnly="False" />
+        <assembly assemblyPath=".\CodeOMatic.Logging\bin\Release\CodeOMatic.Logging.dll" xmlCommentsPath=".\CodeOMatic.Logging\bin\Release\CodeOMatic.Logging.xml" commentsOnly="False" />
         <assembly assemblyPath=".\CodeOMatic.Validation.CompileTime\bin\Release\CodeOMatic.Validation.CompileTime.dll" xmlCommentsPath=".\CodeOMatic.Validation.CompileTime\bin\Release\CodeOMatic.Validation.CompileTime.xml" commentsOnly="False" />
         <assembly assemblyPath=".\CodeOMatic.Validation.Core\bin\Release\CodeOMatic.Validation.Core.dll" xmlCommentsPath=".\CodeOMatic.Validation.Core\bin\Release\CodeOMatic.Validation.Core.xml" commentsOnly="False" />
         <assembly assemblyPath=".\CodeOMatic.Validation\bin\Release\CodeOMatic.Validation.dll" xmlCommentsPath=".\CodeOMatic.Validation\bin\Release\CodeOMatic.Validation.xml" commentsOnly="False" />

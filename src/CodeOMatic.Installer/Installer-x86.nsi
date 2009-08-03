@@ -23,6 +23,7 @@ Section "Code-o-matic"
 	File CodeOMatic.Validation.CompileTime.dll
 	File CodeOMatic.Validation.Core.dll
 	File CodeOMatic.Core.dll
+	File CodeOMatic.Logging.psplugin
 	File CodeOMatic.Logging.dll
 	File CodeOMatic.Logging.CompileTime.dll
 	File log4net.dll
@@ -33,7 +34,6 @@ Section "Code-o-matic"
 	File CodeOMatic.Core.dll
 	File CodeOMatic.Web.dll
 	File CodeOMatic.Logging.dll
-	File CodeOMatic.Logging.CompileTime.dll
 	File log4net.dll
 	File PostsharpRequired.cs
 	

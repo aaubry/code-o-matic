@@ -41,7 +41,7 @@ namespace CodeOMatic.Logging.CompileTime
 					break;
 
 				default:
-					throw new ArgumentOutOfRangeException();
+					throw new ArgumentOutOfRangeException("context");
 			}
 		}
 
