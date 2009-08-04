@@ -2,8 +2,10 @@
 using System.Reflection;
 using log4net;
 using PostSharp.CodeModel;
+using PostSharp.CodeModel.Helpers;
 using PostSharp.CodeWeaver;
 using PostSharp.Collections;
+using System.Diagnostics;
 
 namespace CodeOMatic.Logging.CompileTime
 {
@@ -11,7 +13,20 @@ namespace CodeOMatic.Logging.CompileTime
 	{
 		internal const string loggerFieldName = "logger_qrE7YQg07D";
 
-		protected static FieldDefDeclaration GetLoggerField(WeavingContext context, bool create)
+		protected static IField GetLoggerField(WeavingContext context, bool create)
+		{
+			var field = GetNonGenericLoggerField(context, create);
+			if (field != null && context.Method.DeclaringType.IsGenericDefinition)
+			{
+				return GenericHelper.GetFieldCanonicalGenericInstance(field);
+			}
+			else
+			{
+				return field;
+			}
+		}
+
+		private static FieldDefDeclaration GetNonGenericLoggerField(WeavingContext context, bool create)
 		{
 			var type = context.Method.DeclaringType;
 			foreach(var currentField in type.Fields)
