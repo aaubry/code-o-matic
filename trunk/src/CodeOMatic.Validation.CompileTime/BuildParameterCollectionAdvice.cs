@@ -66,13 +66,13 @@ namespace CodeOMatic.Validation.CompileTime
 
 			IMethod add = context.Method.Module.FindMethod(typeof(ParameterDictionary).GetMethod("Add", new[] { typeof(string), typeof(object) }), BindingOptions.Default);
 
-			int parameterIndex = context.Method.IsStatic ? 0 : 1;
+			short parameterIndex = context.Method.IsStatic ? (short)0 : (short)1;
 			foreach (var parameter in method.Parameters)
 			{
 				writer.EmitInstruction(OpCodeNumber.Dup);
 
 				writer.EmitInstructionString(OpCodeNumber.Ldstr, new LiteralString(parameter.Name));
-				writer.EmitInstructionInt32(OpCodeNumber.Ldarg, parameterIndex++);
+				writer.EmitInstructionInt16(OpCodeNumber.Ldarg, parameterIndex++);
 
 				if (parameter.ParameterType.GetSystemType(null, null).IsValueType)
 				{

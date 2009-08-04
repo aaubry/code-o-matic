@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MbUnit.Framework, Version=1.0.2700.29885, Culture=neutral, PublicKeyToken=5e72ecd30bc408d5">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\MbUnit.Framework.dll</HintPath>
@@ -63,6 +67,7 @@
     <Compile Include="CustomTests.cs" />
     <Compile Include="IntervalTests.cs" />
     <Compile Include="LessTests.cs" />
+    <Compile Include="LogTests.cs" />
     <Compile Include="NotEmptyTests.cs" />
     <Compile Include="NotNullTests.cs" />
     <Compile Include="PatternTests.cs" />
@@ -76,6 +81,10 @@
     <ProjectReference Include="..\..\src\CodeOMatic.Core\CodeOMatic.Core.csproj">
       <Project>{A19865A8-76A1-4823-BA3A-0718C5697D64}</Project>
       <Name>CodeOMatic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\CodeOMatic.Logging\CodeOMatic.Logging.csproj">
+      <Project>{7D451D1A-F00B-4244-BCEC-8AF7C5E8FD10}</Project>
+      <Name>CodeOMatic.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\CodeOMatic.Validation.CompileTime\CodeOMatic.Validation.CompileTime.csproj">
       <Project>{419E4BCB-15FD-4AD3-B5B8-5DD45FCA3CA8}</Project>

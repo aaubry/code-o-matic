@@ -1,7 +1,9 @@
 ﻿using System;
+using PostSharp.CodeModel.Helpers;
 using PostSharp.CodeWeaver;
 using PostSharp.CodeModel;
 using log4net;
+using System.Diagnostics;
 
 namespace CodeOMatic.Logging.CompileTime
 {
@@ -22,7 +24,14 @@ namespace CodeOMatic.Logging.CompileTime
 
 		protected override void Weave(WeavingContext context, InstructionWriter writer)
 		{
-			writer.EmitInstructionType(OpCodeNumber.Ldtoken, context.Method.DeclaringType);
+			ITypeSignature declaringType = context.Method.DeclaringType;
+			if (declaringType.IsGenericDefinition)
+			{
+				var canonicalType = GenericHelper.GetTypeCanonicalGenericInstance(declaringType.GetTypeDefinition(BindingOptions.RequireGenericDefinition));
+				var genericContext = canonicalType.GetGenericContext(GenericContextOptions.ResolveGenericParameterDefinitions);
+				declaringType = canonicalType.MapGenericArguments(genericContext);
+			}
+			writer.EmitInstructionType(OpCodeNumber.Ldtoken, declaringType);
 
 			var typeGetType = typeof(Type).GetMethod("GetTypeFromHandle");
 			writer.EmitInstructionMethod(OpCodeNumber.Call, context.Method.Module.FindMethod(typeGetType, BindingOptions.Default));
