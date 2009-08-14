@@ -5,6 +5,7 @@ using System.Xml;
 using System.Reflection;
 using log4net.Config;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace CodeOMatic.Logging
 {
@@ -44,22 +45,24 @@ namespace CodeOMatic.Logging
 		/// <item>
 		/// <term>Log.EmailTo"]</term>
 		/// <description>The recipient of the emails.</description>
-		/// </item>		/// </list>
+		/// </item>
 		/// <item>
 		/// <term>Log.EmailServer"]</term>
 		/// <description>The address of the email server.</description>
-		/// </item>		/// </summary>
+		/// </item>
+		/// </list>
+		/// </summary>
 		public void Configure()
 		{
-			XmlDocument configuration = new XmlDocument();
-			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("CodeOMatic.Logging.StandardConfiguration.xml"))
-			{
-				configuration.Load(resource);
-			}
+			LoadConfiguration("StandardConfiguration", true);
+		}
 
-			CustomizeConfiguration(configuration);
-
-			XmlConfigurator.Configure(configuration.DocumentElement);
+		/// <summary>
+		/// Configures the logging to send every log message to the console.
+		/// </summary>
+		public void ConfigureToConsole()
+		{
+			LoadConfiguration("ConsoleConfiguration", false);
 		}
 
 		/// <summary>
@@ -72,10 +75,12 @@ namespace CodeOMatic.Logging
 		/// <param name="configuration">The configuration.</param>
 		protected virtual void CustomizeConfiguration(XmlDocument configuration)
 		{
+			string applicationName = GetApplicationName();
+
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'RollingFileAppender']/file/@value",
-				Path.Combine(GetLogFileDir(), GetApplicationName() + ".log.")
+				Path.Combine(GetLogFileDir(), applicationName + ".log.")
 			);
 			
 			SetAttributes(
@@ -94,6 +99,12 @@ namespace CodeOMatic.Logging
 				configuration,
 				"/log4net/appender[@name = 'SmtpAppender']/to/@value",
 				GetAppSettingsValue("Log.EmailTo")
+			);
+			
+			SetAttributes(
+				configuration,
+				"/log4net/appender[@name = 'SmtpAppender']/subject/@value",
+				string.Format(CultureInfo.InvariantCulture, "Error from the '{0}' application", applicationName)
 			);
 			
 			SetAttributes(
@@ -190,6 +201,22 @@ namespace CodeOMatic.Logging
 				throw new ConfigurationErrorsException("The directory indicated in the appSettings key Log.FileDir is not writable: " + logPath, err);
 			}
 			return logPath;
+		}
+
+		private void LoadConfiguration(string configurationFileName, bool customize)
+		{
+			XmlDocument configuration = new XmlDocument();
+			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("CodeOMatic.Logging." + configurationFileName + ".xml"))
+			{
+				configuration.Load(resource);
+			}
+
+			if (customize)
+			{
+				CustomizeConfiguration(configuration);
+			}
+
+			XmlConfigurator.Configure(configuration.DocumentElement);
 		}
 	}
 }
