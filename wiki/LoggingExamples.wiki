@@ -1,0 +1,9 @@
+#summary Example of usage of the logging attributes and methods.
+
+= Introduction =
+
+TBD
+
+= Details =
+
+TBD
