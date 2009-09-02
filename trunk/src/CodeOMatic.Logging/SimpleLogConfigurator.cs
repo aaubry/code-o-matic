@@ -28,11 +28,11 @@ namespace CodeOMatic.Logging
 		/// </item>
 		/// <item>
 		/// <term>Log.FileLevel</term>
-		/// <description>The minimum level required to append messages to the log.</description>
+		/// <description>The minimum level required to append messages to the log. Valid values are DEBUG, INFO, WARN, ERROR, FATAL, OFF.</description>
 		/// </item>
 		/// <item>
 		/// <term>Log.EmailLevel</term>
-		/// <description>The minimum level required to send messages by email.</description>
+		/// <description>The minimum level required to send messages by email. Valid values are DEBUG, INFO, WARN, ERROR, FATAL, OFF.</description>
 		/// </item>
 		/// <item>
 		/// <term>Log.MessageFormat"]</term>
@@ -80,43 +80,43 @@ namespace CodeOMatic.Logging
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'RollingFileAppender']/file/@value",
-				Path.Combine(GetLogFileDir(), applicationName + ".log.")
+				GetLogFileName(applicationName)
 			);
 			
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'RollingFileAppender']/filter/levelMin/@value",
-				GetAppSettingsValue("Log.FileLevel", "DEBUG")
+				GetLogFileLevel()
+			);
+
+			SetAttributes(
+				configuration,
+				"/log4net/appender[@name = 'SmtpAppender']/to/@value",
+				GetLogEmailTo()
 			);
 
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'SmtpAppender']/from/@value",
-				GetAppSettingsValue("Log.EmailFrom")
-			);
-			
-			SetAttributes(
-				configuration,
-				"/log4net/appender[@name = 'SmtpAppender']/to/@value",
-				GetAppSettingsValue("Log.EmailTo")
+				GetLogEmailFrom()
 			);
 			
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'SmtpAppender']/subject/@value",
-				string.Format(CultureInfo.InvariantCulture, "Error from the '{0}' application", applicationName)
+				GetEmailSubject(applicationName)
 			);
 			
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'SmtpAppender']/smtpHost/@value",
-				GetAppSettingsValue("Log.EmailServer")
+				GetLogEmailServer()
 			);
 			
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'SmtpAppender']/evaluator/threshold/@value",
-				GetAppSettingsValue("Log.EmailLevel", "FATAL")
+				GetLogEmailLevel()
 			);
 
 			string messageFormat = GetAppSettingsValue("Log.MessageFormat", null);
@@ -128,6 +128,71 @@ namespace CodeOMatic.Logging
 					messageFormat
 				);
 			}
+		}
+
+		/// <summary>
+		/// Gets the log email level.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogEmailLevel()
+		{
+			return GetAppSettingsValue("Log.EmailLevel", "FATAL");
+		}
+
+		/// <summary>
+		/// Gets the log email server.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogEmailServer()
+		{
+			return GetAppSettingsValue("Log.EmailServer");
+		}
+
+		/// <summary>
+		/// Gets the email subject.
+		/// </summary>
+		/// <param name="applicationName">Name of the application.</param>
+		/// <returns></returns>
+		protected virtual string GetEmailSubject(string applicationName)
+		{
+			return string.Format(CultureInfo.InvariantCulture, "Error from the '{0}' application", applicationName);
+		}
+
+		/// <summary>
+		/// Gets the log email recipient.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogEmailTo()
+		{
+			return GetAppSettingsValue("Log.EmailTo");
+		}
+
+		/// <summary>
+		/// Gets the log email sender.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogEmailFrom()
+		{
+			return GetAppSettingsValue("Log.EmailFrom", GetAppSettingsValue("Log.EmailTo"));
+		}
+
+		/// <summary>
+		/// Gets the log file level.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogFileLevel()
+		{
+			return GetAppSettingsValue("Log.FileLevel", "DEBUG");
+		}
+
+		/// <summary>
+		/// Gets the name of the log file.
+		/// </summary>
+		/// <param name="applicationName">Name of the application.</param>
+		/// <returns></returns>
+		protected virtual string GetLogFileName(string applicationName)
+		{
+			return Path.Combine(GetLogFileDir(), applicationName + ".log.");
 		}
 
 		private static string GetAppSettingsValue(string key)
