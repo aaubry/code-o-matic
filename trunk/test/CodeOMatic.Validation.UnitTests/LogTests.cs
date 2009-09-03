@@ -44,5 +44,22 @@ namespace CodeOMatic.Validation.UnitTests
 			var a = new A<int>();
 			Console.WriteLine(a.Value);
 		}
+
+		[Test]
+		public void AttributeTest()
+		{
+			LoggedMethodStatic("Hello", "world");
+			LoggedMethodInstance("Hello", "world");
+		}
+
+		[Log]
+		private static void LoggedMethodStatic(string p, string p_2)
+		{
+		}
+
+		[Log]
+		private void LoggedMethodInstance(string p, string p_2)
+		{
+		}
 	}
 }
