@@ -103,12 +103,14 @@ namespace CodeOMatic.Logging.CompileTime
 				var objectType = module.FindType(typeof(object), BindingOptions.Default);
 				writer.EmitInstructionType(OpCodeNumber.Newarr, objectType);
 
+				int firstParameterIndex = context.Method.IsStatic ? 0 : 1;
+
 				for (int i = 0; i < parameters.Count; ++i)
 				{
 					writer.EmitInstruction(OpCodeNumber.Dup);
 					writer.EmitInstructionInt32(OpCodeNumber.Ldc_I4, i);
 
-					writer.EmitInstructionInt32(OpCodeNumber.Ldarg, i);
+					writer.EmitInstructionInt16(OpCodeNumber.Ldarg, (short)(i + firstParameterIndex));
 
 					var parameter = parameters[i];
 					if (parameter.ParameterType.BelongsToClassification(TypeClassifications.ValueType))
