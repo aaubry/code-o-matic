@@ -42,7 +42,6 @@ namespace CodeOMatic.Web
 
 		private bool isGetter;
 
-
 		/// <summary>
 		/// Gets or sets the name of the variable.
 		/// </summary>
@@ -167,7 +166,10 @@ namespace CodeOMatic.Web
 					}
 				}
 
-				CompileTimeValidate(method, propertyType, propertyName);
+				CompileTimeValidateSetter(method, propertyType, propertyName);
+			} else
+			{
+				CompileTimeValidateGetter(method, propertyName);
 			}
 
 			return base.CompileTimeValidate(method);
@@ -179,7 +181,16 @@ namespace CodeOMatic.Web
 		/// <param name="setter">The setter method of the property.</param>
 		/// <param name="propertyType">Type of the property.</param>
 		/// <param name="propertyName">Name of the property.</param>
-		protected virtual void CompileTimeValidate(MethodBase setter, Type propertyType, string propertyName)
+		protected virtual void CompileTimeValidateSetter(MethodBase setter, Type propertyType, string propertyName)
+		{
+		}
+
+		/// <summary>
+		/// Validates the usage of the attribute on a specific property.
+		/// </summary>
+		/// <param name="getter">The getter.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		protected virtual void CompileTimeValidateGetter(MethodBase getter, string propertyName)
 		{
 		}
 

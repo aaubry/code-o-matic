@@ -23,7 +23,7 @@ namespace CodeOMatic.Web
 		/// <param name="setter">The setter method of the property.</param>
 		/// <param name="propertyType">Type of the property.</param>
 		/// <param name="propertyName">Name of the property.</param>
-		protected override void CompileTimeValidate(MethodBase setter, Type propertyType, string propertyName)
+		protected override void CompileTimeValidateSetter(MethodBase setter, Type propertyType, string propertyName)
 		{
 			if (!typeof(Control).IsAssignableFrom(setter.DeclaringType))
 			{
@@ -44,7 +44,7 @@ namespace CodeOMatic.Web
 				));
 			}
 
-			fieldName = string.Format(CultureInfo.InvariantCulture, "__~~~~{0}", propertyName);
+			SetFieldName(propertyName);
 
 			MethodDefDeclaration postsharpMethod = ((IReflectionWrapper<MethodDefDeclaration>)setter).WrappedObject;
 
@@ -54,6 +54,21 @@ namespace CodeOMatic.Web
 			propertyField.Attributes = FieldAttributes.Private;
 
 			postsharpMethod.DeclaringType.Fields.Add(propertyField);
+		}
+
+		/// <summary>
+		/// Validates the usage of the attribute on a specific property.
+		/// </summary>
+		/// <param name="getter">The getter.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		protected override void CompileTimeValidateGetter(MethodBase getter, string propertyName)
+		{
+			SetFieldName(propertyName);
+		}
+
+		private void SetFieldName(string propertyName)
+		{
+			fieldName = string.Format(CultureInfo.InvariantCulture, "__~~~~{0}", propertyName);
 		}
 
 		private delegate StateBag GetViewStateDelegate(Control target);
