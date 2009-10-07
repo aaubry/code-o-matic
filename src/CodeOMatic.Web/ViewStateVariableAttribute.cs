@@ -62,7 +62,16 @@ namespace CodeOMatic.Web
 
 			FieldDefDeclaration propertyField = new FieldDefDeclaration();
 			propertyField.Name = fieldName;
-			propertyField.FieldType = postsharpMethod.Module.FindType(propertyType, BindingOptions.Default);
+
+			if(propertyType.IsGenericType)
+			{
+				propertyField.FieldType = postsharpMethod.Module.FindType(propertyType, BindingOptions.RequireGenericInstance);
+			}
+			else
+			{
+				propertyField.FieldType = postsharpMethod.Module.FindType(propertyType, BindingOptions.Default);
+			}
+
 			propertyField.Attributes = FieldAttributes.Private;
 
 			postsharpMethod.DeclaringType.Fields.Add(propertyField);

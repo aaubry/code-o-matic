@@ -55,4 +55,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "c:\program files\PostSharp 1.0"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
