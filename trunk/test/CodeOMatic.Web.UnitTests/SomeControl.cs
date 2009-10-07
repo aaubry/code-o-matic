@@ -21,9 +21,23 @@ namespace CodeOMatic.Web.UnitTests
 			set;
 		}
 
-		[NotNull]
+		//[NotNull]
 		[ViewStateVariable]
 		public extern string MyViewStateVariable2
+		{
+			get;
+			set;
+		}
+
+		[ViewStateVariable]
+		public string MyViewStateVariable3
+		{
+			get;
+			set;
+		}
+
+		[ViewStateVariable]
+		public int? MyViewStateVariable4
 		{
 			get;
 			set;
