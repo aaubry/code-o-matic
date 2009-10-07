@@ -25,7 +25,19 @@ namespace CodeOMatic.Web
 		/// <param name="propertyName">Name of the property.</param>
 		protected override void CompileTimeValidateSetter(MethodBase setter, Type propertyType, string propertyName)
 		{
-			if (!typeof(Control).IsAssignableFrom(setter.DeclaringType))
+			bool isControl = false;
+			Type baseType = setter.DeclaringType;
+			while (baseType != null)
+			{
+				if (baseType.FullName == "System.Web.UI.Control")
+				{
+					isControl = true;
+					break;
+				}
+				baseType = baseType.BaseType;
+			}
+
+			if (!isControl)
 			{
 				MessageSource.MessageSink.Write(new Message(
 					SeverityType.Error,

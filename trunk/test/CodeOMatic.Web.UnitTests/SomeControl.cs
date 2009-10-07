@@ -19,6 +19,13 @@ namespace CodeOMatic.Web.UnitTests
 			get;
 			set;
 		}
+
+		[ViewStateVariable]
+		public extern string MyViewStateVariable2
+		{
+			get;
+			set;
+		}
 	}
 
 	[TestFixture]
