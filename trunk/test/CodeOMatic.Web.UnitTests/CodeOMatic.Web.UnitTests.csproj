@@ -61,6 +61,14 @@
     <Compile Include="SomeControl.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CodeOMatic.Validation.Core\CodeOMatic.Validation.Core.csproj">
+      <Project>{B79E4E3C-38DC-4560-AC3F-EBCFE5242D7C}</Project>
+      <Name>CodeOMatic.Validation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\CodeOMatic.Validation\CodeOMatic.Validation.csproj">
+      <Project>{4CA76C77-7433-4EDA-9F46-41A62C77BA6A}</Project>
+      <Name>CodeOMatic.Validation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\CodeOMatic.Web\CodeOMatic.Web.csproj">
       <Project>{B93AC8C6-DE54-4152-8D25-458F618540B6}</Project>
       <Name>CodeOMatic.Web</Name>

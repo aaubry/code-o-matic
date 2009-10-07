@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.UI;
+using CodeOMatic.Validation;
 using MbUnit.Framework;
 
 namespace CodeOMatic.Web.UnitTests
@@ -20,6 +21,7 @@ namespace CodeOMatic.Web.UnitTests
 			set;
 		}
 
+		[NotNull]
 		[ViewStateVariable]
 		public extern string MyViewStateVariable2
 		{
