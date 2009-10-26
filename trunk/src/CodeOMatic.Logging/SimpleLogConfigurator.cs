@@ -155,7 +155,7 @@ namespace CodeOMatic.Logging
 		/// <returns></returns>
 		protected virtual string GetEmailSubject(string applicationName)
 		{
-			return string.Format(CultureInfo.InvariantCulture, "Error from the '{0}' application", applicationName);
+			return string.Format(CultureInfo.InvariantCulture, "Error from the '{0}' application on server '{1}'", applicationName, Environment.MachineName);
 		}
 
 		/// <summary>
