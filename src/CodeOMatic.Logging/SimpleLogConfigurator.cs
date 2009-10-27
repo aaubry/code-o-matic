@@ -23,12 +23,16 @@ namespace CodeOMatic.Logging
 		/// <description>Description</description>
 		/// </listheader>
 		/// <item>
+		/// <term>Log.Level</term>
+		/// <description>The minimum level required to append messages to the log. Valid values are DEBUG, INFO, WARN, ERROR, FATAL, OFF.</description>
+		/// </item>
+		/// <item>
 		/// <term>Log.FileDir</term>
 		/// <description>The path of the directory where the log files will be written.</description>
 		/// </item>
 		/// <item>
 		/// <term>Log.FileLevel</term>
-		/// <description>The minimum level required to append messages to the log. Valid values are DEBUG, INFO, WARN, ERROR, FATAL, OFF.</description>
+		/// <description>The minimum level required to append messages to the file log. Valid values are DEBUG, INFO, WARN, ERROR, FATAL, OFF.</description>
 		/// </item>
 		/// <item>
 		/// <term>Log.EmailLevel</term>
@@ -82,7 +86,13 @@ namespace CodeOMatic.Logging
 				"/log4net/appender[@name = 'RollingFileAppender']/file/@value",
 				GetLogFileName(applicationName)
 			);
-			
+
+			SetAttributes(
+				configuration,
+				"/log4net/root/level/@value",
+				GetLogLevel()
+			);
+
 			SetAttributes(
 				configuration,
 				"/log4net/appender[@name = 'RollingFileAppender']/filter/levelMin/@value",
@@ -183,6 +193,15 @@ namespace CodeOMatic.Logging
 		protected virtual string GetLogFileLevel()
 		{
 			return GetAppSettingsValue("Log.FileLevel", "DEBUG");
+		}
+
+		/// <summary>
+		/// Gets the log level.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual string GetLogLevel()
+		{
+			return GetAppSettingsValue("Log.Level", "DEBUG");
 		}
 
 		/// <summary>
