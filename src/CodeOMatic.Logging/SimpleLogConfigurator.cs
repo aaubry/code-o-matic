@@ -249,7 +249,7 @@ namespace CodeOMatic.Logging
 		/// <returns></returns>
 		protected virtual string GetApplicationName()
 		{
-			StackTrace stack = new StackTrace(false);
+			var stack = new StackTrace(false);
 			foreach (var frame in stack.GetFrames())
 			{
 				var caller = frame.GetMethod();
@@ -265,31 +265,35 @@ namespace CodeOMatic.Logging
 			return "Application";
 		}
 
-		private static string GetLogFileDir()
+		private string GetLogFileDir()
 		{
 			string logPath = GetAppSettingsValue("Log.FileDir");
-			if (!Directory.Exists(logPath))
-			{
-				throw new ConfigurationErrorsException("The directory indicated in the appSettings key Log.FileDir does not exist: " + logPath);
-			}
 
-			string writeTestFile = Path.Combine(logPath, Path.GetRandomFileName());
-			try
+			if(GetLogFileLevel() != "OFF" && GetLogLevel() != "OFF")
 			{
-				var file = File.Create(writeTestFile);
-				file.Close();
-				File.Delete(writeTestFile);
-			}
-			catch(Exception err)
-			{
-				throw new ConfigurationErrorsException("The directory indicated in the appSettings key Log.FileDir is not writable: " + logPath, err);
+				if (!Directory.Exists(logPath))
+				{
+					throw new ConfigurationErrorsException("The directory indicated in the appSettings key Log.FileDir does not exist: " + logPath);
+				}
+
+				string writeTestFile = Path.Combine(logPath, Path.GetRandomFileName());
+				try
+				{
+					var file = File.Create(writeTestFile);
+					file.Close();
+					File.Delete(writeTestFile);
+				}
+				catch (Exception err)
+				{
+					throw new ConfigurationErrorsException("The directory indicated in the appSettings key Log.FileDir is not writable: " + logPath, err);
+				}
 			}
 			return logPath;
 		}
 
 		private void LoadConfiguration(string configurationFileName, bool customize)
 		{
-			XmlDocument configuration = new XmlDocument();
+			var configuration = new XmlDocument();
 			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("CodeOMatic.Logging." + configurationFileName + ".xml"))
 			{
 				configuration.Load(resource);
